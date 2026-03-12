@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>白片 — 运营设计师作品集</title>
+
+    <!-- SEO -->
+    <meta name="description" content="白片 — 运营设计师 × AI，专注于通过视觉设计驱动业务增长。精选运营设计、AI 工作流、动效设计等项目展示。">
+    <meta name="keywords" content="白片, 运营设计, AI, 作品集, portfolio, 设计师, AIGC, 视觉设计">
+    <meta name="author" content="白片">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="白片 — 运营设计师作品集">
+    <meta property="og:description" content="白片 — 运营设计师 × AI，精选作品展示">
+    <meta property="og:type" content="website">
+    <!-- <meta property="og:image" content="assets/images/og-cover.webp"> -->
+
+    <!-- Favicon -->
+    <!-- <link rel="icon" href="favicon.ico"> -->
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Outfit:wght@400;500;700&family=Pacifico&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+<!-- Shared SVG defs — folder front clip path for backdrop-filter blur -->
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" color-interpolation-filters="sRGB">
+    <defs>
+        <clipPath id="folderFrontClip" clipPathUnits="objectBoundingBox">
+            <path d="M0.0954 0.1616C0.0913 0.1100 0.0893 0.0842 0.0959 0.0643C0.1016 0.0467 0.1118 0.0322 0.1247 0.0231C0.1394 0.0127 0.1594 0.0127 0.1996 0.0127H0.4116C0.4252 0.0127 0.4320 0.0127 0.4386 0.0144C0.4443 0.0160 0.4499 0.0185 0.4552 0.0220C0.4611 0.0259 0.4665 0.0314 0.4771 0.0425L0.5082 0.0748C0.5189 0.0858 0.5242 0.0914 0.5301 0.0953C0.5354 0.0988 0.5410 0.1013 0.5468 0.1029C0.5533 0.1046 0.5601 0.1046 0.5738 0.1046H0.8738C0.9142 0.1046 0.9344 0.1046 0.9492 0.1151C0.9621 0.1243 0.9723 0.1389 0.9780 0.1566C0.9845 0.1766 0.9823 0.2026 0.9780 0.2544L0.9425 0.6784C0.9389 0.7211 0.9371 0.7425 0.9295 0.7586C0.9228 0.7728 0.9131 0.7842 0.9014 0.7912C0.8882 0.7992 0.8716 0.7992 0.8384 0.7992H0.2399C0.2064 0.7992 0.1896 0.7992 0.1764 0.7911C0.1647 0.7840 0.1549 0.7726 0.1482 0.7582C0.1407 0.7420 0.1390 0.7204 0.1356 0.6774L0.0954 0.1616Z"/>
+        </clipPath>
+    </defs>
+</svg>
+
+<!-- ═══ Section 1: Landing ═══ -->
+<section class="section-landing" id="section-landing">
+    <div class="landing-content">
+        <div class="accent-dots-grid">
+            <span class="accent-dot"></span><span class="accent-dot"></span>
+            <span class="accent-dot"></span><span class="accent-dot"></span>
+            <span class="accent-dot"></span><span class="accent-dot"></span>
+            <span class="accent-dot"></span><span class="accent-dot"></span>
+            <span class="accent-dot"></span><span class="accent-dot"></span>
+            <span class="accent-dot"></span><span class="accent-dot"></span>
+        </div>
+
+        <div class="landing-text-wrapper">
+            <div class="title-container">
+                <div class="title-glow-pill"></div>
+                <img class="title-shadow-svg" src="assets/images/ui/title-shadow.svg" alt="" draggable="false">
+                <img class="title-svg" src="assets/images/ui/title-portfolio.svg" alt="Portfolio" draggable="false">
+                <span class="title-author">bai<br>Pian</span>
+                <span class="title-year">20<br><span class="year-indent">26</span></span>
+            </div>
+            <p class="landing-subtitle">Operational Designer<br>× AI Workflow</p>
+        </div>
+
+        <p class="landing-note landing-note-left">
+            Visual designer with 4 years of experience, driving business growth through design at Haiyi AI (Xinghehuwu).
+        </p>
+        <p class="landing-note landing-note-right">
+            Led full-case visual design for 10+ strategic AI model launches, built community visual systems
+            supporting 100+ events, and improved high-frequency delivery efficiency by over 30%.
+        </p>
+
+        <div class="floating-scene" id="floating-scene">
+            <!-- Operational folder — top-left -->
+            <div class="folder-card folder-card--banner float-item" data-speed="0.6" data-project="0" style="top: 5%; left: 3%;">
+                <div class="folder-3d">
+                    <img class="folder-back" src="assets/images/ui/folder-back.svg" alt="" draggable="false">
+                    <div class="folder-photos">
+                        <div class="folder-photo photo-left"><img src="assets/images/projects/Operational Design/slide-1-海艺绘梦师.webp" alt="" draggable="false"></div>
+                        <div class="folder-photo photo-center"><img src="assets/images/projects/Operational Design/slide-3-圣诞活动.webp" alt="" draggable="false"></div>
+                        <div class="folder-photo photo-right"><img src="assets/images/projects/Operational Design/slide-2-儿童节活动.webp" alt="" draggable="false"></div>
+                    </div>
+                    <div class="folder-flap">
+                        <img class="folder-front" src="assets/images/ui/folder-front.svg" alt="" draggable="false">
+                        <img class="folder-sticker" src="assets/images/stickers/banner.png" alt="" draggable="false">
+                        <span class="folder-label">Operational</span>
+                    </div>
+                </div>
+                <span class="folder-cn">运营设计</span>
+            </div>
+
+            <!-- Motion folder — top-right -->
+            <div class="folder-card folder-card--motion float-item" data-speed="0.5" data-project="13" style="top: 12%; right: 2%;">
+                <div class="folder-3d">
+                    <img class="folder-back" src="assets/images/ui/folder-back.svg" alt="" draggable="false">
+                    <div class="folder-photos">
+                        <div class="folder-photo photo-left"><img src="assets/images/projects/Operational Design/slide-6-2024年度报告.webp" alt="" draggable="false"></div>
+                        <div class="folder-photo photo-center"><img src="assets/images/projects/Operational Design/slide-4-内容创作大赛.webp" alt="" draggable="false"></div>
+                        <div class="folder-photo photo-right"><img src="assets/images/projects/Operational Design/slide-5-激励计划.webp" alt="" draggable="false"></div>
+                    </div>
+                    <div class="folder-flap">
+                        <img class="folder-front" src="assets/images/ui/folder-front.svg" alt="" draggable="false">
+                        <img class="folder-sticker" src="assets/images/stickers/motion.png" alt="" draggable="false">
+                        <span class="folder-label">Motion</span>
+                    </div>
+                </div>
+                <span class="folder-cn">动效设计</span>
+            </div>
+
+            <!-- Visual folder — bottom-left -->
+            <div class="folder-card folder-card--ai float-item" data-speed="0.8" data-project="10" style="bottom: 20%; left: 2%;">
+                <div class="folder-3d">
+                    <img class="folder-back" src="assets/images/ui/folder-back.svg" alt="" draggable="false">
+                    <div class="folder-photos">
+                        <div class="folder-photo photo-left"><img src="assets/images/projects/Visual Design/slide-1 品牌入驻小红书.webp" alt="" draggable="false"></div>
+                        <div class="folder-photo photo-center"><img src="assets/images/projects/Visual Design/slide-2 comfyui 大会线下物料.webp" alt="" draggable="false"></div>
+                        <div class="folder-photo photo-right"><img src="assets/images/projects/Visual Design/slide-3-产品外宣合集.webp" alt="" draggable="false"></div>
+                    </div>
+                    <div class="folder-flap">
+                        <img class="folder-front" src="assets/images/ui/folder-front.svg" alt="" draggable="false">
+                        <img class="folder-sticker" src="assets/images/stickers/ai.png" alt="" draggable="false">
+                        <span class="folder-label">Visual</span>
+                    </div>
+                </div>
+                <span class="folder-cn">视觉设计</span>
+            </div>
+
+            <!-- More projects folder — bottom-right -->
+            <div class="folder-card folder-card--visual float-item" data-speed="0.3" data-project="3" style="bottom: 8%; right: 6%;">
+                <div class="folder-3d">
+                    <img class="folder-back" src="assets/images/ui/folder-back.svg" alt="" draggable="false">
+                    <div class="folder-photos">
+                        <div class="folder-photo photo-left"><img src="assets/images/projects/Operational Design/slide-7-flux创作活动页.webp" alt="" draggable="false"></div>
+                        <div class="folder-photo photo-center"><img src="assets/images/projects/Operational Design/slide-9-活动banner合集.webp" alt="" draggable="false"></div>
+                        <div class="folder-photo photo-right"><img src="assets/images/projects/Operational Design/slide-8-viduQ2 模型上线宣传.webp" alt="" draggable="false"></div>
+                    </div>
+                    <div class="folder-flap">
+                        <img class="folder-front" src="assets/images/ui/folder-front.svg" alt="" draggable="false">
+                        <img class="folder-sticker" src="assets/images/stickers/visual.png" alt="" draggable="false">
+                        <span class="folder-label">Projects</span>
+                    </div>
+                </div>
+                <span class="folder-cn">更多作品</span>
+            </div>
+
+            <div class="landing-blob blob-1"></div>
+        </div>
+    </div>
+
+    <div class="scroll-hint" id="scroll-hint">
+        <span>Scroll to explore</span>
+        <div class="scroll-arrow"></div>
+    </div>
+</section>
+
+<!-- ═══ Section 2: About (Bento Grid) ═══ -->
+<section class="section-about" id="section-about">
+    <div class="bento-container">
+        <div class="about-header">
+            <img class="about-title-svg" src="assets/images/ui/title-aboutme.svg" alt="About Me" draggable="false">
+        </div>
+
+        <div class="bento-grid">
+            <!-- Row 1: Bio + Avatar + Stats -->
+            <div class="bento-item item-bio">
+                <span class="bento-tag">个人介绍</span>
+                <h3 class="bio-heading">AIGC 视觉设计师，专注于通过品牌视觉与 AI 工作流提升业务增长效率。</h3>
+                <p class="bio-sub">服务过头部 AI 产品，负责增长活动与品牌运营视觉设计。擅长将复杂能力转化为清晰、有吸引力的视觉表达，并通过规范搭建、模板化与 AI 提效流程提升团队交付效率。</p>
+                <div class="bio-tags">
+                    <span class="skill-tag">品牌视觉</span>
+                    <span class="skill-tag">活动视觉</span>
+                    <span class="skill-tag">AIGC 设计</span>
+                    <span class="skill-tag">AIGC 工作流</span>
+                </div>
+            </div>
+
+            <div class="bento-item item-avatar">
+                <div class="avatar-circle">
+                    <span class="avatar-text">白片</span>
+                </div>
+                <span class="avatar-name">白片</span>
+                <span class="avatar-info">26岁 | 本科 | 3 年工作经验</span>
+                <div class="avatar-tags">
+                    <span class="skill-tag">成都</span>
+                    <span class="skill-tag">视觉传达设计</span>
+                </div>
+            </div>
+
+            <div class="bento-item item-stats">
+                <span class="bento-tag">效率数据</span>
+                <div class="stats-list">
+                    <div class="stat-row">
+                        <span class="stat-val">47%</span>
+                        <span class="stat-label">团队产出占比</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-row">
+                        <span class="stat-val">100%</span>
+                        <span class="stat-label">按时交付率</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-row">
+                        <span class="stat-val">6+</span>
+                        <span class="stat-label">并行格式输出</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2: Experience 1 + Experience 2 + Tools -->
+            <div class="bento-item item-exp1">
+                <div class="exp-header">
+                    <span class="exp-role">AIGC 视觉设计师</span>
+                    <span class="exp-date">2023.10 - 至今</span>
+                </div>
+                <div class="exp-meta">
+                    <span class="exp-company">星合互娱（SeaArt AI）</span>
+                    <span class="exp-badge">MAU 3000W+</span>
+                    <span class="exp-badge">注册用户 5000W+</span>
+                </div>
+                <div class="exp-divider"></div>
+                <ol class="exp-details">
+                    <li><strong>模型发布全案视觉：</strong>主导 10+ 款核心 AI 模型发布视觉，从概念定义、主视觉到社媒 / 官网 / 应用内多平台适配，全链路交付。</li>
+                    <li><strong>增长活动视觉：</strong>负责大型增长活动与商业化活动视觉，覆盖落地页、活动页、社交传播物料，支撑用户增长与转化。</li>
+                    <li><strong>视觉体系与提效：</strong>从零搭建社区运营视觉规范，覆盖 100+ 场活动。推动组件化与模板化，高频需求交付效率提升 30%+。</li>
+                    <li><strong>AI 工作流与团队赋能：</strong>搭建标准化 AI 辅助出图工作流，降低生产成本与交付周期。持续跟进 AI 前沿能力，开发内部课程并担任讲师，负责新人培训。</li>
+                </ol>
+            </div>
+
+            <div class="bento-item item-exp2">
+                <div class="exp-header">
+                    <span class="exp-role">视觉设计师</span>
+                    <span class="exp-date">2022.07 - 2023.10</span>
+                </div>
+                <div class="exp-meta">
+                    <span class="exp-company">微梦传媒（AiPPT）</span>
+                    <span class="exp-badge">MAU 600W+</span>
+                    <span class="exp-badge">B1 轮融资</span>
+                </div>
+                <div class="exp-divider"></div>
+                <ol class="exp-details">
+                    <li><strong>品牌与运营视觉：</strong>负责公司品牌宣传物料与运营活动视觉，维护品牌视觉一致性。</li>
+                    <li><strong>模板产品线设计：</strong>负责 AiPPT 模板产品线视觉设计，基于用户数据制定设计方向，产出规范文档。</li>
+                    <li><strong>新媒体运营：</strong>独立运营新媒体账号，覆盖内容策划、视频剪辑与账号运维。</li>
+                </ol>
+            </div>
+
+            <div class="bento-item item-tools">
+                <span class="bento-tag">工具技能</span>
+                <div class="tools-icons">
+                    <img src="assets/images/tools/icon1.png" alt="Tool" draggable="false">
+                    <img src="assets/images/tools/icon4.png" alt="Tool" draggable="false">
+                    <img src="assets/images/tools/icon8.png" alt="Tool" draggable="false">
+                    <img src="assets/images/tools/icon7.png" alt="Tool" draggable="false">
+                    <img src="assets/images/tools/icon5.png" alt="Tool" draggable="false">
+                    <img src="assets/images/tools/icon6.png" alt="Tool" draggable="false">
+                    <img src="assets/images/tools/icon2.png" alt="Tool" draggable="false">
+                    <img src="assets/images/tools/icon3.png" alt="Tool" draggable="false">
+                    <img src="assets/images/tools/icon9.png" alt="Tool" draggable="false">
+                </div>
+            </div>
+
+            <!-- Row 3: Internships -->
+            <div class="bento-item item-intern">
+                <div class="intern-row">
+                    <span class="intern-company">稿定设计</span>
+                    <span class="intern-role">视觉设计实习</span>
+                    <span class="exp-date">2022.02 - 2022.05</span>
+                </div>
+                <div class="exp-divider"></div>
+                <div class="intern-row">
+                    <span class="intern-company">悟空中文</span>
+                    <span class="intern-role">平面设计实习</span>
+                    <span class="exp-date">2021.06 - 2021.09</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ Marquee Divider ═══ -->
+<section class="section-marquee" id="section-marquee">
+    <div class="marquee-track">
+        <div class="marquee-inner">
+            <span class="marquee-item">Visual Design</span>
+            <span class="marquee-dot">●</span>
+            <span class="marquee-item">Brand KV</span>
+            <span class="marquee-dot">●</span>
+            <span class="marquee-item">AI Model Assets</span>
+            <span class="marquee-dot">●</span>
+            <span class="marquee-item">Campaign Banner</span>
+            <span class="marquee-dot">●</span>
+            <span class="marquee-item">Community Visual</span>
+            <span class="marquee-dot">●</span>
+            <span class="marquee-item">Poster Design</span>
+            <span class="marquee-dot">●</span>
+            <span class="marquee-item">Motion Graphics</span>
+            <span class="marquee-dot">●</span>
+            <span class="marquee-item">Midjourney</span>
+            <span class="marquee-dot">●</span>
+            <span class="marquee-item">ComfyUI</span>
+            <span class="marquee-dot">●</span>
+            <span class="marquee-item">Figma</span>
+            <span class="marquee-dot">●</span>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ Section 3: Narrative Gallery ═══ -->
+<section class="section-gallery" id="section-gallery">
+    <div class="gallery-sidebar" id="gallery-sidebar">
+        <div class="sidebar-projects" id="sidebar-projects"></div>
+        <div class="sidebar-counter" id="sidebar-counter">01 / 04</div>
+    </div>
+
+    <div class="gallery-main">
+        <div class="gallery-header">
+            <div class="gallery-title-group">
+                <span class="gallery-label">Selected Works</span>
+                <h2 class="gallery-title">作品集</h2>
+            </div>
+            <div class="gallery-now" id="gallery-now">
+                <span class="gallery-now-num" id="gallery-now-num">01</span>
+                <span class="gallery-now-name" id="gallery-now-name">海艺绘梦师</span>
+            </div>
+        </div>
+        <div class="gallery-track" id="gallery-track"></div>
+    </div>
+</section>
+
+<!-- ═══ Contact Modal ═══ -->
+<div class="modal-overlay" id="contact-modal">
+    <div class="modal-card">
+        <button class="modal-close" id="modal-close" aria-label="关闭">&times;</button>
+        <h3 class="modal-title">联系方式</h3>
+        <p class="modal-subtitle">期待与你的交流</p>
+        <div class="contact-list">
+            <!-- TODO: 替换为真实邮箱 -->
+            <a class="contact-item" href="mailto:894565155@qq.com">
+                <svg viewBox="0 0 24 24" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <span>894565155@qq.com</span>
+            </a>
+            <!-- TODO: 替换为真实小红书链接 -->
+            <a class="contact-item" href="https://www.xiaohongshu.com/user/profile/5b6f00df99e52e000109cc5b" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
+                <span>小红书：白片</span>
+            </a>
+            <!-- TODO: 替换为真实微信号 -->
+            <a class="contact-item copy-wechat" href="#" data-wechat="13056420132">
+                <svg viewBox="0 0 24 24" width="20" height="20"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                <span>微信：13056420132</span>
+                <span class="copy-hint">点击复制</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ Dock ═══ -->
+<div class="dock-wrapper" id="dock-wrapper">
+    <div class="dock" id="dock" role="toolbar" aria-label="Application dock">
+        <div class="dock-item active" data-action="home" role="button" tabindex="0"><span class="dock-tooltip" role="tooltip">首页</span><div class="dock-icon"><svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><polyline points="9 21 9 14 15 14 15 21"/></svg></div></div>
+        <div class="dock-item" data-action="about" role="button" tabindex="0"><span class="dock-tooltip" role="tooltip">关于我</span><div class="dock-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div></div>
+        <div class="dock-item" data-action="works" role="button" tabindex="0"><span class="dock-tooltip" role="tooltip">作品集</span><div class="dock-icon"><svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div></div>
+        <div class="dock-divider"></div>
+        <div class="dock-item" data-action="contact" role="button" tabindex="0"><span class="dock-tooltip" role="tooltip">联系方式</span><div class="dock-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div></div>
+        <div class="dock-item" data-action="resume" role="button" tabindex="0"><span class="dock-tooltip" role="tooltip">下载简历</span><div class="dock-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div></div>
+    </div>
+</div>
+
+<!-- ═══ Custom Cursor ═══ -->
+<div class="custom-cursor" id="custom-cursor"></div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
