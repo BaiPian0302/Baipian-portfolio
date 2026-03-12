@@ -35,7 +35,13 @@ const dockActionMap = {
     works: () => scrollToSection(gallerySection),
     about: () => scrollToSection(sectionAbout),
     contact: () => window.__openContactModal?.(),
-    resume: () => window.open('assets/files/resume.pdf', '_blank'),
+    resume: () => {
+        const url = 'assets/files/resume.pdf';
+        fetch(url, { method: 'HEAD' }).then(r => {
+            if (r.ok) window.open(url, '_blank');
+            else alert('简历正在准备中，请稍后再试 :)');
+        }).catch(() => alert('简历正在准备中，请稍后再试 :)'));
+    },
 };
 
 export function updateDockMetrics() {
