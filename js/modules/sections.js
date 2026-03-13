@@ -165,15 +165,31 @@ function initFolderInteractions() {
 function runLandingAnimation() {
     lenis.stop();
 
-    gsap.set('.folder-card', { opacity: 0, scale: 0.8, y: 25 });
-    gsap.set('.title-container', { y: 60, opacity: 0 });
-    gsap.set('.landing-subtitle', { y: 20, opacity: 0 });
-    gsap.set('.accent-dots-grid', { opacity: 0, scale: 0.85 });
-    gsap.set('.landing-note', { opacity: 0, y: 20 });
-    gsap.set(dockWrapper, { y: 100, opacity: 0 });
-    gsap.set(scrollHint, { opacity: 0 });
+    const folders = gsap.utils.toArray('.folder-card');
+    const folderEntrances = [
+        { x: -120, y: -60, rotation: -12 },
+        { x: 120,  y: -80, rotation: 10 },
+        { x: -100, y: 60,  rotation: 8 },
+        { x: 100,  y: 80,  rotation: -10 },
+    ];
 
-    const timeline = gsap.timeline({
+    gsap.set('.title-svg', { opacity: 0, scale: 1.12, filter: 'blur(12px)' });
+    gsap.set('.title-shadow-svg', { opacity: 0, scale: 1.15 });
+    gsap.set('.title-glow-pill', { opacity: 0, scale: 0.6 });
+    gsap.set('.title-author', { opacity: 0, y: 18, clipPath: 'inset(100% 0 0 0)' });
+    gsap.set('.title-year', { opacity: 0, y: -18, clipPath: 'inset(0 0 100% 0)' });
+    gsap.set('.landing-subtitle', { opacity: 0, y: 30, letterSpacing: '0.3em' });
+    gsap.set('.accent-dots-grid', { opacity: 0, scale: 0.5, rotation: -15 });
+    gsap.set('.landing-note-left', { opacity: 0, x: -50, y: 15 });
+    gsap.set('.landing-note-right', { opacity: 0, x: 50, y: 15 });
+    folders.forEach((f, i) => {
+        const e = folderEntrances[i] || folderEntrances[0];
+        gsap.set(f, { opacity: 0, scale: 0.6, x: e.x, y: e.y, rotation: e.rotation });
+    });
+    gsap.set(dockWrapper, { y: 80, opacity: 0 });
+    gsap.set(scrollHint, { opacity: 0, y: 10 });
+
+    const tl = gsap.timeline({
         onComplete: () => {
             lenis.start();
             requestAnimationFrame(() => {
@@ -190,14 +206,69 @@ function runLandingAnimation() {
         },
     });
 
-    timeline
-        .to('.title-container', { y: 0, opacity: 1, duration: 1.2, ease: 'power4.out' })
-        .to('.accent-dots-grid', { opacity: 1, scale: 1, duration: 0.8, ease: 'power3.out' }, '-=0.7')
-        .to('.landing-subtitle', { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }, '-=0.6')
-        .to('.landing-note', { y: 0, opacity: 1, duration: 0.9, stagger: 0.1, ease: 'power2.out' }, '-=0.6')
-        .to('.folder-card', { opacity: 1, scale: 1, y: 0, duration: 1.1, stagger: 0.12, ease: 'back.out(1.2)' }, '-=0.75')
-        .to(dockWrapper, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }, '-=0.5')
-        .to(scrollHint, { opacity: 1, duration: 0.8 }, '-=0.5');
+    tl
+        // Phase 1 — Title reveal with blur-to-sharp
+        .to('.title-svg', {
+            opacity: 1, scale: 1, filter: 'blur(0px)',
+            duration: 1.6, ease: 'expo.out',
+        })
+        .to('.title-shadow-svg', {
+            opacity: 1, scale: 1,
+            duration: 1.4, ease: 'expo.out',
+        }, 0.1)
+        .to('.title-glow-pill', {
+            opacity: 1, scale: 1,
+            duration: 1.2, ease: 'back.out(1.6)',
+        }, 0.6)
+
+        // Phase 2 — Identity clip-in
+        .to('.title-author', {
+            opacity: 1, y: 0, clipPath: 'inset(0% 0 0 0)',
+            duration: 0.9, ease: 'power3.out',
+        }, 0.7)
+        .to('.title-year', {
+            opacity: 1, y: 0, clipPath: 'inset(0 0 0% 0)',
+            duration: 0.9, ease: 'power3.out',
+        }, 0.8)
+
+        // Phase 3 — Accent dots spin in
+        .to('.accent-dots-grid', {
+            opacity: 1, scale: 1, rotation: 0,
+            duration: 1.2, ease: 'back.out(2)',
+        }, 0.9)
+
+        // Phase 4 — Subtitle with letter-spacing settle
+        .to('.landing-subtitle', {
+            opacity: 1, y: 0, letterSpacing: '0em',
+            duration: 1.3, ease: 'power3.out',
+        }, 1.1)
+
+        // Phase 5 — Notes slide in from sides
+        .to('.landing-note-left', {
+            opacity: 1, x: 0, y: 0,
+            duration: 1.1, ease: 'power3.out',
+        }, 1.6)
+        .to('.landing-note-right', {
+            opacity: 1, x: 0, y: 0,
+            duration: 1.1, ease: 'power3.out',
+        }, 1.8)
+
+        // Phase 6 — Folders fly in from corners
+        .to(folders, {
+            opacity: 1, scale: 1, x: 0, y: 0, rotation: 0,
+            duration: 1.4, stagger: 0.15,
+            ease: 'back.out(1.4)',
+        }, 1.9)
+
+        // Phase 7 — UI chrome
+        .to(dockWrapper, {
+            y: 0, opacity: 1,
+            duration: 1.0, ease: 'power3.out',
+        }, '-=0.6')
+        .to(scrollHint, {
+            opacity: 1, y: 0,
+            duration: 0.9, ease: 'power2.out',
+        }, '-=0.5');
 }
 
 function initAboutAnimation() {
