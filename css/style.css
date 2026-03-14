@@ -60,7 +60,7 @@ html, body {
 }
 
 body {
-    overflow-x: hidden;
+    overflow-x: clip;
     position: relative;
 }
 
@@ -646,7 +646,7 @@ body::-webkit-scrollbar { width: 0; height: 0; }
 
 .bento-tag {
     display: inline-block;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
     color: #ababaf;
     letter-spacing: 1.12px;
@@ -671,7 +671,7 @@ body::-webkit-scrollbar { width: 0; height: 0; }
 }
 
 .bio-heading {
-    font-size: 21px;
+    font-size: 20px;
     font-weight: 700;
     line-height: 1.4;
     color: var(--text-primary);
@@ -679,7 +679,7 @@ body::-webkit-scrollbar { width: 0; height: 0; }
 }
 
 .bio-sub {
-    font-size: 18px;
+    font-size: 15px;
     line-height: 1.6;
     color: #86868b;
     font-weight: 350;
@@ -749,7 +749,7 @@ body::-webkit-scrollbar { width: 0; height: 0; }
 }
 
 .avatar-name {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
     color: var(--text-primary);
     margin-top: 6px;
@@ -838,12 +838,13 @@ body::-webkit-scrollbar { width: 0; height: 0; }
 .exp-role {
     font-size: 20px;
     font-weight: 700;
+    letter-spacing: -0.01em;
     color: var(--text-primary);
 }
 
 .exp-date {
     font-family: 'Outfit', sans-serif;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 700;
     color: #3dcfaf;
     flex-shrink: 0;
@@ -858,7 +859,7 @@ body::-webkit-scrollbar { width: 0; height: 0; }
 
 .exp-company {
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--text-tertiary);
     letter-spacing: -0.02em;
 }
@@ -885,7 +886,7 @@ body::-webkit-scrollbar { width: 0; height: 0; }
 
 .exp-details {
     padding-left: 20px;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.55;
     color: #606066;
     letter-spacing: -0.01em;
@@ -920,11 +921,6 @@ body::-webkit-scrollbar { width: 0; height: 0; }
 
 .item-exp2 .exp-divider {
     margin: 8px 0;
-}
-
-.item-exp2 .exp-details {
-    font-size: 13px;
-    line-height: 1.5;
 }
 
 /* ── 4h. Tools Card (icon grid) ── */
@@ -1022,7 +1018,7 @@ body::-webkit-scrollbar { width: 0; height: 0; }
 }
 
 .intern-company {
-    font-size: 17px;
+    font-size: 20px;
     font-weight: 700;
     color: var(--text-primary);
 }
@@ -1516,37 +1512,37 @@ body.cursor-active * {
 
     .folder-card {
         width: clamp(120px, 34vw, 156px);
-        opacity: 0.85;
+        opacity: 0.8;
     }
     .folder-card--banner {
-        top: 4% !important;
-        left: -3% !important;
+        top: 6% !important;
+        left: 2% !important;
         right: auto !important;
         bottom: auto !important;
     }
     .folder-card--motion {
-        top: 2% !important;
-        right: -4% !important;
+        top: 3% !important;
+        right: 0 !important;
         left: auto !important;
         bottom: auto !important;
     }
     .folder-card--ai {
-        bottom: 18% !important;
-        left: -5% !important;
+        bottom: 20% !important;
+        left: -2% !important;
         top: auto !important;
         right: auto !important;
     }
     .folder-card--visual {
-        bottom: 14% !important;
-        right: -3% !important;
+        bottom: 16% !important;
+        right: 0 !important;
         top: auto !important;
         left: auto !important;
     }
-    .folder-photo { border-width: 3px; border-radius: 8px; }
-    .folder-label { font-size: 16px; }
-    .folder-cn    { font-size: 10px; }
+    .folder-photo  { border-width: 3px; border-radius: 8px; }
+    .folder-label  { font-size: 16px; }
+    .folder-cn     { font-size: 10px; }
 
-    .scroll-hint       { bottom: 72px; }
+    .scroll-hint   { bottom: 72px; }
 
     /* — Dock — */
     .dock-wrapper      { height: auto; }
@@ -1596,15 +1592,25 @@ body.cursor-active * {
         grid-row: auto;
     }
 
-    .bento-item { padding: 20px; border-radius: 18px; }
+    .item-avatar { order: 1; }
+    .item-bio    { order: 2; }
+    .item-stats  { order: 3; }
+    .item-exp1   { order: 4; }
+    .item-exp2   { order: 5; }
+    .item-intern { order: 6; }
+    .item-tools  { order: 7; }
 
-    .bio-heading { font-size: 17px; }
-    .bio-sub     { font-size: 15px; }
+    .bento-item { padding: 20px; border-radius: 18px; }
+    .bento-tag  { font-size: 12px; }
+
+    .bio-heading { font-size: 16px; }
+    .bio-sub     { font-size: 14px; }
+    .skill-tag   { font-size: 11px; padding: 4px 10px; }
 
     .item-avatar { min-height: auto; padding: 28px 20px; }
     .avatar-circle { width: 100px; height: 100px; }
     .avatar-text   { font-size: 28px; }
-    .avatar-name   { font-size: 18px; }
+    .avatar-name   { font-size: 16px; }
     .avatar-info   { font-size: 12px; }
 
     .item-stats { padding: 24px 20px; }
@@ -1615,12 +1621,16 @@ body.cursor-active * {
 
     .item-exp1 { padding: 20px; }
     .item-exp2 { padding: 20px; }
-    .exp-role  { font-size: 17px; }
-    .exp-date  { font-size: 13px; }
+    .exp-role     { font-size: 16px; }
+    .exp-date     { font-size: 12px; }
     .exp-company  { font-size: 14px; }
     .exp-badge    { font-size: 12px; padding: 2px 8px; }
-    .exp-details  { font-size: 13px; line-height: 1.5; padding-left: 18px; }
+    .exp-details  { font-size: 14px; line-height: 1.5; padding-left: 18px; }
     .exp-divider  { margin: 10px 0; }
+    .item-exp2 .exp-details { font-size: 14px; }
+
+    .intern-company { font-size: 16px; }
+    .intern-role    { font-size: 12px; }
 
     .item-tools { padding: 20px; min-height: 200px; }
     .tools-icons {
@@ -1684,7 +1694,8 @@ body.cursor-active * {
     .title-container { width: clamp(200px, 80vw, 320px); }
     .landing-subtitle { font-size: 13px; }
 
-    .folder-card { width: clamp(100px, 30vw, 130px); opacity: 0.75; }
+    .folder-card { width: clamp(100px, 28vw, 120px); opacity: 0.7; }
+    .folder-label { font-size: 13px; }
 
     .dock-pills { padding: 10px 12px; gap: 6px; }
     .dock { height: 38px; padding: 0 12px; gap: 8px; }
@@ -1692,7 +1703,13 @@ body.cursor-active * {
 
     .bento-item { padding: 16px; border-radius: 14px; }
     .bio-heading { font-size: 15px; }
-    .bio-sub { font-size: 14px; }
+    .bio-sub { font-size: 13px; }
+    .avatar-name { font-size: 15px; }
+    .exp-role { font-size: 15px; }
+    .exp-details { font-size: 13px; }
+    .item-exp2 .exp-details { font-size: 13px; }
+    .exp-company { font-size: 13px; }
+    .intern-company { font-size: 15px; }
 
     .stat-val { font-size: 28px; }
 
@@ -1704,7 +1721,8 @@ body.cursor-active * {
 
     .exp-details { font-size: 12px; }
 
-    .bento-section { --bento-cols: 1 !important; gap: 8px; }
+    .bento-section { --bento-cols: 1 !important; gap: 6px; }
+    .bento-section[style*="3 / 4"] { --bento-cols: 2 !important; }
 
     .section-about { padding: 32px 10px 48px; }
 }
