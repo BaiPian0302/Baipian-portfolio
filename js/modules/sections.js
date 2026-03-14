@@ -13,8 +13,7 @@ import {
     scrollToTop,
 } from './core.js';
 import { switchProject, initGalleryScroll } from './gallery.js';
-import { initAboutDockHighlight, updateDockMetrics } from './dock.js';
-import { initScrollSnap } from './scroll-snap.js';
+import { initAboutDockHighlight, initGalleryNowPill } from './dock.js';
 
 let folderInteractionsReady = false;
 let resizeTimer;
@@ -186,7 +185,7 @@ function runLandingAnimation() {
         const e = folderEntrances[i] || folderEntrances[0];
         gsap.set(f, { opacity: 0, scale: 0.6, x: e.x, y: e.y, rotation: e.rotation });
     });
-    gsap.set(dockWrapper, { y: 80, opacity: 0 });
+    gsap.set(dockWrapper, { y: -36, opacity: 0 });
     gsap.set(scrollHint, { opacity: 0, y: 10 });
 
     const tl = gsap.timeline({
@@ -200,6 +199,7 @@ function runLandingAnimation() {
                     initLandingScrollExit();
                     initAboutAnimation();
                     initAboutDockHighlight();
+                    initGalleryNowPill();
                     ScrollTrigger.refresh();
                 });
             });
@@ -478,7 +478,6 @@ function initGlobalEvents() {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
             ScrollTrigger.refresh();
-            updateDockMetrics();
         }, 200);
     });
 
@@ -499,6 +498,5 @@ export function initAfterLoad() {
     initLiquidGlass();
     initCustomCursor();
     initMarquee();
-    initScrollSnap();
     initGlobalEvents();
 }

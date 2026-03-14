@@ -1,4 +1,6 @@
-/* Gallery layout & sidebar module */
+/* ═══════════════════════════════════════
+   Gallery — Layout & Sidebar
+   ═══════════════════════════════════════ */
 
 :root {
     --gallery-sidebar-col: 190px;
@@ -41,6 +43,8 @@
     z-index: 1;
 }
 
+/* ── Sidebar ── */
+
 .gallery-sidebar {
     position: sticky;
     top: 96px;
@@ -73,6 +77,8 @@
 }
 
 .sidebar-projects::-webkit-scrollbar { width: 0; }
+
+/* ── Category Accordion ── */
 
 .sidebar-category {
     display: flex;
@@ -179,6 +185,8 @@
 
 .sc-body-inner::-webkit-scrollbar { width: 3px; }
 .sc-body-inner::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 2px; }
+
+/* ── Project Thumbnail ── */
 
 .sc-project {
     position: relative;
@@ -299,65 +307,36 @@
     text-align: center;
 }
 
-.gallery-header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    width: 100%;
-    min-height: 58px;
-    padding: 14px 62px;
-    box-sizing: border-box;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
-    margin-bottom: 20px;
-    background: rgba(245,245,247,0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-}
-
-.gallery-title-group {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
-.gallery-label {
-    font-family: 'Outfit', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #48dbbd;
-}
-
-.gallery-title {
-    font-family: 'Noto Sans SC', sans-serif;
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--text-primary);
-    line-height: 1.2;
-}
+/* ── Current Project Pill ── */
 
 .gallery-now {
+    position: absolute;
+    top: 24px;
+    right: 40px;
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 5px 12px;
-    background: rgba(255,255,255,0.72);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(0,0,0,0.05);
-    border-radius: 999px;
-    transition: opacity 0.3s ease;
+    padding: 0 20px;
+    height: 51px;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 80px;
+    pointer-events: auto;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.35s cubic-bezier(0.23,1,0.32,1),
+                transform 0.35s cubic-bezier(0.23,1,0.32,1);
+}
+
+.gallery-now.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .gallery-now-num {
     font-family: 'Outfit', sans-serif;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 700;
     color: #48dbbd;
     letter-spacing: 0.05em;
@@ -365,11 +344,16 @@
 }
 
 .gallery-now-name {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-primary);
-    letter-spacing: -0.01em;
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #000;
+    letter-spacing: -0.4px;
+    text-transform: uppercase;
+    white-space: nowrap;
 }
+
+/* ── Main Track ── */
 
 .gallery-main {
     min-width: 0;
@@ -391,17 +375,31 @@
 }
 
 @media (max-width: 768px) {
-    .section-gallery  {
+    .section-gallery {
         grid-template-columns: 1fr;
-        gap: 18px;
-        padding: 72px 16px 96px;
+        gap: 0;
+        padding: 64px 0 80px;
     }
 
     .gallery-sidebar { display: none; }
     .section-gallery::before { display: none; }
-    .gallery-main { gap: 16px; }
-    .gallery-track { gap: 20px; }
-    .gallery-header { margin-bottom: 14px; padding: 10px 0; }
-    .gallery-title { font-size: 22px; }
+    .gallery-main { gap: 0; }
+    .gallery-track { gap: 16px; }
     .gallery-now { display: none; }
+
+    #gallery-track {
+        padding: 0 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-gallery {
+        padding: 56px 0 64px;
+    }
+
+    .gallery-track { gap: 12px; }
+
+    #gallery-track {
+        padding: 0 10px;
+    }
 }

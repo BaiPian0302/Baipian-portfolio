@@ -16,7 +16,6 @@ import {
 } from './core.js';
 
 let activePi = 0;
-let currentSidebarPi = 0;
 let expandedCatId = null;
 let galleryArticleTriggers = [];
 let galleryRevealTriggers = [];
@@ -88,7 +87,6 @@ function toggleCategory(catId) {
 }
 
 function updateSidebarProjectHighlight(pi) {
-    currentSidebarPi = pi;
     const project = PROJECTS[pi];
 
     sidebarProjects.querySelectorAll('.sc-project').forEach((element) => {
@@ -296,16 +294,6 @@ export function switchProject(pi) {
 
     updateSidebarProjectHighlight(pi);
     lenis.scrollTo(target, { offset: SCROLL.projectOffset, duration: SCROLL.projectDuration });
-}
-
-export function getActiveProjectIndex() {
-    return Math.max(0, Math.min(activePi, galleryArticles.length - 1));
-}
-
-export function getGalleryArticles() {
-    buildGallery();
-    ensureGalleryArticles();
-    return galleryArticles;
 }
 
 export function initGalleryOnDemand() {

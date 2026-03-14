@@ -127,9 +127,7 @@ export const sectionAbout = document.getElementById('section-about');
 export const contactModal = document.getElementById('contact-modal');
 export const modalCloseBtn = document.getElementById('modal-close');
 export const dockWrapper = document.getElementById('dock-wrapper');
-export const dock = document.getElementById('dock');
 export const dockItems = document.querySelectorAll('.dock-item');
-export const dockIcons = document.querySelectorAll('.dock-icon');
 
 export function formatIndex(n) {
     return String(n).padStart(2, '0');

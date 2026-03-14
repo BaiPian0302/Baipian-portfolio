@@ -25,23 +25,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Outfit:wght@400;500;700&family=Pacifico&display=swap" rel="stylesheet">
 
-    <!-- Scroll reset — must run before browser restores scroll position -->
     <script>history.scrollRestoration = 'manual';</script>
 
-    <!-- Styles -->
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Lenis Smooth Scroll -->
+    <!-- Vendor: Lenis + GSAP -->
     <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
-
-    <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
-<!-- Shared SVG defs — folder front clip path for backdrop-filter blur -->
-<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" color-interpolation-filters="sRGB">
+<!-- SVG defs — folder clip path -->
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
     <defs>
         <clipPath id="folderFrontClip" clipPathUnits="objectBoundingBox">
             <path d="M0.0954 0.1616C0.0913 0.1100 0.0893 0.0842 0.0959 0.0643C0.1016 0.0467 0.1118 0.0322 0.1247 0.0231C0.1394 0.0127 0.1594 0.0127 0.1996 0.0127H0.4116C0.4252 0.0127 0.4320 0.0127 0.4386 0.0144C0.4443 0.0160 0.4499 0.0185 0.4552 0.0220C0.4611 0.0259 0.4665 0.0314 0.4771 0.0425L0.5082 0.0748C0.5189 0.0858 0.5242 0.0914 0.5301 0.0953C0.5354 0.0988 0.5410 0.1013 0.5468 0.1029C0.5533 0.1046 0.5601 0.1046 0.5738 0.1046H0.8738C0.9142 0.1046 0.9344 0.1046 0.9492 0.1151C0.9621 0.1243 0.9723 0.1389 0.9780 0.1566C0.9845 0.1766 0.9823 0.2026 0.9780 0.2544L0.9425 0.6784C0.9389 0.7211 0.9371 0.7425 0.9295 0.7586C0.9228 0.7728 0.9131 0.7842 0.9014 0.7912C0.8882 0.7992 0.8716 0.7992 0.8384 0.7992H0.2399C0.2064 0.7992 0.1896 0.7992 0.1764 0.7911C0.1647 0.7840 0.1549 0.7726 0.1482 0.7582C0.1407 0.7420 0.1390 0.7204 0.1356 0.6774L0.0954 0.1616Z"/>
@@ -81,8 +77,7 @@
         </p>
 
         <div class="floating-scene" id="floating-scene">
-            <!-- Operational folder — top-left -->
-            <div class="folder-card folder-card--banner float-item" data-speed="0.6" data-project="0" style="top: 5%; left: 3%;">
+            <div class="folder-card folder-card--banner float-item" data-speed="0.6" data-project="0" style="top: 10%; left: 4%;">
                 <div class="folder-3d">
                     <img class="folder-back" src="assets/images/ui/folder-back.svg" alt="" draggable="false">
                     <div class="folder-photos">
@@ -99,8 +94,7 @@
                 <span class="folder-cn">运营设计</span>
             </div>
 
-            <!-- Motion folder — top-right -->
-            <div class="folder-card folder-card--motion float-item" data-speed="0.5" data-project="13" style="top: 12%; right: 2%;">
+            <div class="folder-card folder-card--motion float-item" data-speed="0.5" data-project="13" style="top: 12%; right: 14%;">
                 <div class="folder-3d">
                     <img class="folder-back" src="assets/images/ui/folder-back.svg" alt="" draggable="false">
                     <div class="folder-photos">
@@ -117,8 +111,7 @@
                 <span class="folder-cn">动效设计</span>
             </div>
 
-            <!-- Visual folder — bottom-left -->
-            <div class="folder-card folder-card--ai float-item" data-speed="0.8" data-project="10" style="bottom: 20%; left: 2%;">
+            <div class="folder-card folder-card--ai float-item" data-speed="0.8" data-project="10" style="bottom: 10%; left: 16%;">
                 <div class="folder-3d">
                     <img class="folder-back" src="assets/images/ui/folder-back.svg" alt="" draggable="false">
                     <div class="folder-photos">
@@ -135,8 +128,7 @@
                 <span class="folder-cn">视觉设计</span>
             </div>
 
-            <!-- More projects folder — bottom-right -->
-            <div class="folder-card folder-card--visual float-item" data-speed="0.3" data-project="3" style="bottom: 8%; right: 6%;">
+            <div class="folder-card folder-card--visual float-item" data-speed="0.3" data-project="3" style="bottom: 10%; right: 5%;">
                 <div class="folder-3d">
                     <img class="folder-back" src="assets/images/ui/folder-back.svg" alt="" draggable="false">
                     <div class="folder-photos">
@@ -171,7 +163,6 @@
         </div>
 
         <div class="bento-grid">
-            <!-- Row 1: Bio + Avatar + Stats -->
             <div class="bento-item item-bio">
                 <span class="bento-tag">个人介绍</span>
                 <h3 class="bio-heading">AIGC 视觉设计师，专注于通过品牌视觉与 AI 工作流提升业务增长效率。</h3>
@@ -216,7 +207,6 @@
                 </div>
             </div>
 
-            <!-- Row 2: Experience 1 + Experience 2 + Tools -->
             <div class="bento-item item-exp1">
                 <div class="exp-header">
                     <span class="exp-role">AIGC 视觉设计师</span>
@@ -269,7 +259,6 @@
                 </div>
             </div>
 
-            <!-- Row 3: Internships -->
             <div class="bento-item item-intern">
                 <div class="intern-row">
                     <span class="intern-company">稿定设计</span>
@@ -323,16 +312,6 @@
     </div>
 
     <div class="gallery-main">
-        <div class="gallery-header">
-            <div class="gallery-title-group">
-                <span class="gallery-label">Selected Works</span>
-                <h2 class="gallery-title">作品集</h2>
-            </div>
-            <div class="gallery-now" id="gallery-now">
-                <span class="gallery-now-num" id="gallery-now-num">01</span>
-                <span class="gallery-now-name" id="gallery-now-name">海艺绘梦师</span>
-            </div>
-        </div>
         <div class="gallery-track" id="gallery-track"></div>
     </div>
 </section>
@@ -344,17 +323,14 @@
         <h3 class="modal-title">联系方式</h3>
         <p class="modal-subtitle">期待与你的交流</p>
         <div class="contact-list">
-            <!-- TODO: 替换为真实邮箱 -->
             <a class="contact-item" href="mailto:894565155@qq.com">
                 <svg viewBox="0 0 24 24" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 <span>894565155@qq.com</span>
             </a>
-            <!-- TODO: 替换为真实小红书链接 -->
             <a class="contact-item" href="https://www.xiaohongshu.com/user/profile/5b6f00df99e52e000109cc5b" target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
                 <span>小红书：白片</span>
             </a>
-            <!-- TODO: 替换为真实微信号 -->
             <a class="contact-item copy-wechat" href="#" data-wechat="13056420132">
                 <svg viewBox="0 0 24 24" width="20" height="20"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
                 <span>微信：13056420132</span>
@@ -364,17 +340,36 @@
     </div>
 </div>
 
-<!-- ═══ Dock ═══ -->
-<div class="dock-wrapper" id="dock-wrapper">
-    <div class="dock" id="dock" role="toolbar" aria-label="Application dock">
-        <div class="dock-item active" data-action="home" role="button" tabindex="0"><span class="dock-tooltip" role="tooltip">首页</span><div class="dock-icon"><svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><polyline points="9 21 9 14 15 14 15 21"/></svg></div></div>
-        <div class="dock-item" data-action="about" role="button" tabindex="0"><span class="dock-tooltip" role="tooltip">关于我</span><div class="dock-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div></div>
-        <div class="dock-item" data-action="works" role="button" tabindex="0"><span class="dock-tooltip" role="tooltip">作品集</span><div class="dock-icon"><svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div></div>
-        <div class="dock-divider"></div>
-        <div class="dock-item" data-action="contact" role="button" tabindex="0"><span class="dock-tooltip" role="tooltip">联系方式</span><div class="dock-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div></div>
-        <div class="dock-item" data-action="resume" role="button" tabindex="0"><span class="dock-tooltip" role="tooltip">下载简历</span><div class="dock-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div></div>
+<!-- ═══ Top Navigation ═══ -->
+<header class="dock-wrapper" id="dock-wrapper">
+    <div class="dock-bg-strip">
+        <button class="dock-brand" id="dock-brand" type="button" aria-label="返回首页">
+            <img class="dock-brand-logo" src="assets/images/ui/nav-logo.svg" alt="Portfolio" draggable="false">
+        </button>
+        <div class="dock-strip-body">
+            <div class="dock-strip-top"></div>
+            <div class="dock-strip-corners">
+                <img class="dock-corner-left" src="assets/images/ui/nav-corner-left.svg" alt="" draggable="false">
+                <img class="dock-corner-right" src="assets/images/ui/nav-corner-right.svg" alt="" draggable="false">
+            </div>
+        </div>
     </div>
-</div>
+    <div class="dock-pills">
+        <nav class="dock dock-center" id="dock" aria-label="Primary navigation">
+            <button class="dock-item active" data-action="home" type="button">Homepage</button>
+            <button class="dock-item" data-action="about" type="button">About</button>
+            <button class="dock-item" data-action="works" type="button">Work</button>
+        </nav>
+        <nav class="dock dock-right" aria-label="Secondary navigation">
+            <button class="dock-item" data-action="contact" type="button">Connect</button>
+            <button class="dock-item" data-action="resume" type="button">Resume</button>
+        </nav>
+    </div>
+    <div class="gallery-now" id="gallery-now">
+        <span class="gallery-now-num" id="gallery-now-num">01</span>
+        <span class="gallery-now-name" id="gallery-now-name">海艺绘梦师</span>
+    </div>
+</header>
 
 <!-- ═══ Custom Cursor ═══ -->
 <div class="custom-cursor" id="custom-cursor"></div>
