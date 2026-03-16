@@ -159,6 +159,12 @@ function buildSidebarProjects() {
         });
     });
 
+    sidebarProjects.querySelectorAll('.sc-cover img').forEach((img) => {
+        const onLoad = () => { img.classList.add('loaded'); img.closest('.sc-cover')?.classList.add('media-loaded'); };
+        if (img.complete) { onLoad(); return; }
+        img.addEventListener('load', onLoad, { once: true });
+    });
+
     expandCategory(PROJECTS[0].category);
     updateSidebarProjectHighlight(0);
     sidebarCounter.textContent = `01 / ${formatIndex(PROJECTS.length)}`;
@@ -189,10 +195,16 @@ function killGalleryScroll() {
     galleryScrollReady = false;
 }
 
+function markLoaded(el) {
+    el.classList.add('loaded');
+    el.parentElement?.classList.add('media-loaded');
+}
+
 function hydrateVideo(video) {
     if (!video || video.dataset.loaded === 'true') return;
     video.src = video.dataset.src;
     video.dataset.loaded = 'true';
+    video.addEventListener('canplay', () => markLoaded(video), { once: true });
     video.load();
     const playPromise = video.play?.();
     if (playPromise?.catch) playPromise.catch(() => {});
@@ -230,6 +242,12 @@ export function buildGallery() {
     galleryTrack.innerHTML = PROJECTS.map((project, pi) => renderProjectArticle(project, pi)).join('');
     galleryArticles = Array.from(galleryTrack.querySelectorAll('.project-article'));
     galleryBuilt = true;
+
+    galleryTrack.querySelectorAll('.project-hero img').forEach((img) => {
+        if (img.complete) { markLoaded(img); return; }
+        img.addEventListener('load', () => markLoaded(img), { once: true });
+    });
+
     updateGalleryOverlay(0);
     buildSidebarProjects();
     observeBentoVideos();
@@ -264,7 +282,7 @@ export function initGalleryScroll() {
 
         galleryArticleTriggers.push(articleTrigger);
 
-        const leadElement = article.querySelector('.project-hero, .project-bento-grid');
+        const leadElement = article.querySelector('.project-hero, .project-bento-layout');
         if (!leadElement) return;
 
         const leadReveal = gsap.fromTo(leadElement,

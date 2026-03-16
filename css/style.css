@@ -12,13 +12,23 @@
    9. Responsive
    ══════════════════════════════════════════ */
 
-@import url("./pages/gallery.css");
-
 /* ═══════════════════════════════════════
    1. Reset & Variables
    ═══════════════════════════════════════ */
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
 
 html.lenis, html.lenis body {
     height: auto;
@@ -60,6 +70,7 @@ html, body {
 }
 
 body {
+    overflow-x: hidden;
     overflow-x: clip;
     position: relative;
 }
@@ -74,6 +85,7 @@ body::-webkit-scrollbar { width: 0; height: 0; }
 
 .section-landing {
     height: 100vh;
+    height: 100dvh;
     position: relative;
     overflow: hidden;
     perspective: 1200px;
@@ -495,6 +507,11 @@ body::-webkit-scrollbar { width: 0; height: 0; }
     50%      { transform: rotate(45deg) translateY(6px); opacity: 0.4; }
 }
 
+@keyframes shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
 
 /* ═══════════════════════════════════════
    3. Gallery Section
@@ -519,7 +536,10 @@ body::-webkit-scrollbar { width: 0; height: 0; }
     box-shadow: 0 6px 24px rgba(0,0,0,0.05);
     position: relative;
     overflow: hidden;
-    background: #fff;
+    background: #eee;
+    background-image: linear-gradient(90deg, #eee 0%, #f5f5f5 40%, #eee 80%);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s ease-in-out infinite;
 }
 
 .project-hero img,
@@ -527,6 +547,18 @@ body::-webkit-scrollbar { width: 0; height: 0; }
     display: block;
     width: 100%;
     height: auto;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.project-hero.media-loaded {
+    animation: none;
+    background-image: none;
+}
+
+.project-hero img.loaded,
+.project-hero video.loaded {
+    opacity: 1;
 }
 
 /* ── 3c-2. Bento Video Layout ── */
@@ -546,7 +578,10 @@ body::-webkit-scrollbar { width: 0; height: 0; }
 .bento-cell {
     border-radius: 12px;
     overflow: hidden;
-    background: #111;
+    background: #1a1a1a;
+    background-image: linear-gradient(90deg, #1a1a1a 0%, #2a2a2a 40%, #1a1a1a 80%);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s ease-in-out infinite;
     border: 1px solid rgba(255,255,255,0.85);
     box-shadow: 0 4px 16px rgba(0,0,0,0.06);
     aspect-ratio: var(--cell-ratio, 16 / 9);
@@ -565,6 +600,17 @@ body::-webkit-scrollbar { width: 0; height: 0; }
     height: 100%;
     object-fit: cover;
     display: block;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.bento-cell.media-loaded {
+    animation: none;
+    background-image: none;
+}
+
+.bento-cell video.loaded {
+    opacity: 1;
 }
 
 .bento-fit-top .bento-cell video {
@@ -1406,9 +1452,21 @@ body::-webkit-scrollbar { width: 0; height: 0; }
 }
 
 
-body.cursor-active,
-body.cursor-active * {
-    cursor: none !important;
+body.cursor-active {
+    cursor: none;
+}
+body.cursor-active a,
+body.cursor-active button,
+body.cursor-active [role="button"],
+body.cursor-active input,
+body.cursor-active .folder-card,
+body.cursor-active .bento-item,
+body.cursor-active .sc-project {
+    cursor: none;
+}
+
+@media (hover: none) {
+    .custom-cursor { display: none !important; }
 }
 
 
