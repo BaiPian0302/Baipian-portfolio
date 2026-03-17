@@ -1,10 +1,18 @@
 # 作品集项目文案
 
-> 请逐条审核，标注需要修改的地方。确认后我会更新到代码中。
+> 以下为作品集网站中三大板块的项目文案，每个项目包含中英双语的背景、角色与设计亮点描述。
+
+本作品集收录了我在海艺 AI（星合互娱）担任 AIGC 视觉设计师期间主导的 14 个代表项目及动效设计合集，涵盖增长活动全案视觉、品牌视觉物料、产品宣发素材和动态视觉设计四大方向。项目覆盖中、英、日三语市场，服务于一款注册用户超 5000 万、MAU 超 3000 万的全球 AI 创作平台。
+
+This portfolio showcases 14 representative projects and a motion design collection from my role as AIGC Visual Designer at SeaArt AI (Xinghehuwu) — spanning growth campaign visuals, brand identity materials, product promotion assets, and motion graphics. All projects served a global AI creation platform with 50M+ registered users and 30M+ MAU across Chinese, English, and Japanese markets.
 
 ---
 
 ## 一、运营设计 / Operational Design
+
+负责海艺 AI 全部重大增长活动与社区运营的视觉设计，包括模型发布全案、创作者激励体系、节日主题活动、年度品牌回顾等。从主视觉概念定义到多语言多平台适配，独立交付全链路设计。这一板块体现了我在「用视觉驱动业务增长」方面的核心能力——将复杂的活动规则与激励机制转化为清晰、有吸引力的视觉表达。
+
+Responsible for all major growth campaigns and community operations visual design at SeaArt AI — including model launch key visuals, creator incentive systems, holiday-themed events, and annual brand retrospectives. From concept definition to tri-lingual multi-platform adaptation, I delivered end-to-end design independently. This section demonstrates my core ability to drive business growth through design — translating complex campaign mechanics and incentive structures into clear, compelling visual communication.
 
 ---
 
@@ -109,6 +117,10 @@
 
 ## 二、视觉设计 / Visual Design
 
+覆盖品牌入驻、线下活动、产品外宣等场景的视觉设计。与运营设计侧重「活动转化」不同，这一板块更聚焦于品牌调性表达和产品价值传达——将海艺 AI 的技术能力（图像生成、视频模型、3D 建模）转化为直观可感知的视觉语言，在不同渠道和场景中建立统一的品牌认知。
+
+Visual design spanning brand launches, offline events, and product promotion. Unlike the campaign-focused Operational Design section, this collection emphasizes brand tone expression and product value communication — translating SeaArt AI's technical capabilities (image generation, video models, 3D modeling) into intuitive visual language that builds consistent brand perception across channels and contexts.
+
 ---
 
 ### 12. ComfyUI 大会线下物料 / ComfyUI Conference Materials
@@ -138,7 +150,24 @@
 
 ---
 
-## 三、补充信息（供你核对）
+## 三、动效设计 / Motion Design
+
+涵盖 AI 视频混剪、模型发布宣传动效、产品功能展示动画及商业化视频物料。这一板块以视频合集（Bento Grid）形式呈现，按内容类型分为五个区域：AI 视频混剪、产品功能模块动效、模型发布封面动画、模型能力展示视频、商业化推广视频。动效设计是我从静态视觉向动态表达延伸的实践——用运动节奏和视觉叙事强化产品的技术感知与品牌记忆。
+
+A collection of AI video mashups, model launch motion graphics, product feature animations, and commercial video assets. Presented as a video gallery (Bento Grid) organized into five sections: AI video edits, product module animations, model launch cover animations, capability showcase videos, and commercial promotion videos. Motion design represents my practice of extending static visuals into dynamic expression — using motion rhythm and visual narrative to reinforce product perception and brand memory.
+
+---
+
+### 15. 动效设计合集 / Motion Design Collection
+
+- **项目背景**：海艺 AI 各产品线的动态视觉资产合集，涵盖 AI 视频能力展示（SeaArt Muse、Film Video Pro 等模型）、产品功能模块动效（生图、社区、模型训练、数字人）、模型发布宣传封面动画，以及商业化场景的视频物料。
+- **Project Background**: A comprehensive collection of motion assets across SeaArt AI's product lines — covering AI video capability showcases (SeaArt Muse, Film Video Pro, etc.), product feature module animations (image generation, community, model training, digital human), model launch cover animations, and commercial video materials.
+- **我的角色 / My Role**：全部动效设计与视频制作，从视觉概念到动画输出的独立交付。 / Full motion design and video production, independently delivering from visual concept to final animation output.
+- **设计亮点 / Design Highlights**：模型发布封面采用竖版 3:4 构图 + 粒子/光效动画，在信息流中形成强视觉锚点；产品功能动效以 UI 实录 + 动态标注的形式降低用户认知门槛；AI 视频混剪通过节奏剪辑和转场设计展示平台视频生成能力的多样性。 / Model launch covers use portrait 3:4 compositions with particle/light animations to create strong visual anchors in content feeds; product feature animations combine UI recordings with dynamic annotations to lower cognitive barriers; AI video mashups demonstrate the platform's video generation diversity through rhythmic editing and transition design.
+
+---
+
+## 四、补充信息（供你核对）
 
 ### 项目建议分组
 
@@ -146,6 +175,7 @@
 |------|---------|---------|
 | 运营设计 / Operational Design | 01~11 | 选 2 个做方案 A（精讲），其余方案 B（长图） |
 | 视觉设计 / Visual Design | 12~14 | 建议方案 B 或选 1 个做方案 A |
+| 动效设计 / Motion Design | 15 | 视频合集（Bento Grid），按类型分区展示 |
 
 ### 待你确认的事项
 

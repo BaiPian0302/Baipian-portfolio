@@ -104,6 +104,18 @@ body::-webkit-scrollbar { width: 0; height: 0; }
     transform-style: preserve-3d;
 }
 
+.title-svg,
+.title-shadow-svg,
+.title-glow-pill,
+.title-author,
+.title-year,
+.landing-subtitle,
+.accent-dots-grid,
+.landing-note,
+.folder-card {
+    opacity: 0;
+}
+
 .landing-text-wrapper {
     position: relative;
     z-index: 10;
@@ -524,6 +536,34 @@ body::-webkit-scrollbar { width: 0; height: 0; }
 .grad-4 { background: linear-gradient(145deg, #43e97b, #38f9d7) !important; }
 .grad-5 { background: linear-gradient(145deg, #fa709a, #fee140) !important; }
 
+.gallery-guide {
+    border-radius: 28px;
+    overflow: hidden;
+    background: #eee;
+    background-image: linear-gradient(90deg, #eee 0%, #f5f5f5 40%, #eee 80%);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s ease-in-out infinite;
+    min-height: 20vh;
+}
+
+.gallery-guide.media-loaded {
+    animation: none;
+    background-image: none;
+    min-height: 0;
+}
+
+.gallery-guide img {
+    display: block;
+    width: 100%;
+    height: auto;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.gallery-guide img.loaded {
+    opacity: 1;
+}
+
 .project-article {
     display: flex;
     flex-direction: column;
@@ -540,6 +580,7 @@ body::-webkit-scrollbar { width: 0; height: 0; }
     background-image: linear-gradient(90deg, #eee 0%, #f5f5f5 40%, #eee 80%);
     background-size: 200% 100%;
     animation: shimmer 1.6s ease-in-out infinite;
+    min-height: 40vh;
 }
 
 .project-hero img,
@@ -554,6 +595,7 @@ body::-webkit-scrollbar { width: 0; height: 0; }
 .project-hero.media-loaded {
     animation: none;
     background-image: none;
+    min-height: 0;
 }
 
 .project-hero img.loaded,
@@ -1730,6 +1772,7 @@ body.cursor-active .sc-project {
     /* — Gallery — */
     .project-article  { gap: 0; }
     .project-hero     { border-radius: 16px; }
+    .gallery-guide    { border-radius: 16px; }
 
     .project-bento-layout { gap: 12px; }
     .bento-section {

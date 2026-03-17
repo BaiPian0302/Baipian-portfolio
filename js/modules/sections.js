@@ -156,7 +156,16 @@ function initFolderInteractions() {
 
         folder.addEventListener('click', () => {
             const pi = folder.dataset.project;
-            if (pi !== undefined && pi !== '') switchProject(parseInt(pi, 10));
+            const guideId = folder.dataset.guide;
+            if (pi !== undefined && pi !== '') {
+                switchProject(parseInt(pi, 10));
+            } else if (guideId) {
+                import('./gallery.js').then(({ buildGallery }) => {
+                    buildGallery();
+                    const target = document.getElementById(guideId);
+                    if (target) lenis.scrollTo(target, { offset: -100, duration: 1.2 });
+                });
+            }
         });
     });
 }

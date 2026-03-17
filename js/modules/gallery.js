@@ -32,6 +32,18 @@ function ensureGalleryArticles() {
     }
 }
 
+const GUIDE_IMAGES = {
+    operational: 'assets/images/Guide/1.Operational.webp',
+    visual:      'assets/images/Guide/2.Visual.webp',
+    motion:      'assets/images/Guide/3.Motion.webp',
+};
+const GUIDE_OUTRO = 'assets/images/Guide/4.AI.webp';
+
+function renderGuide(src, label, id) {
+    const idAttr = id ? ` id="${id}"` : '';
+    return `<div class="gallery-guide"${idAttr}><img src="${src}" alt="${label}" loading="lazy" draggable="false"></div>`;
+}
+
 function renderProjectArticle(project, pi) {
     if (project.type === 'bento') return renderBentoArticle(project, pi);
 
@@ -86,28 +98,32 @@ function toggleCategory(catId) {
     expandCategory(catId);
 }
 
+function scrollSidebarToActive() {
+    const activeElement = sidebarProjects.querySelector('.sc-project.active');
+    if (!activeElement) return;
+
+    const inner = activeElement.closest('.sc-body-inner');
+    if (!inner) return;
+
+    const elTop = activeElement.offsetTop - inner.offsetTop;
+    const target = elTop - inner.clientHeight / 2 + activeElement.offsetHeight / 2;
+    inner.scrollTo({ top: target, behavior: 'smooth' });
+}
+
 function updateSidebarProjectHighlight(pi) {
     const project = PROJECTS[pi];
+    const catChanged = project.category !== expandedCatId;
 
     sidebarProjects.querySelectorAll('.sc-project').forEach((element) => {
         element.classList.toggle('active', parseInt(element.dataset.pi, 10) === pi);
     });
 
-    if (project.category !== expandedCatId) {
+    if (catChanged) {
         expandCategory(project.category);
+        setTimeout(scrollSidebarToActive, 450);
+    } else {
+        requestAnimationFrame(scrollSidebarToActive);
     }
-
-    requestAnimationFrame(() => {
-        const activeElement = sidebarProjects.querySelector('.sc-project.active');
-        if (!activeElement) return;
-
-        const inner = activeElement.closest('.sc-body-inner');
-        if (!inner) return;
-
-        const elTop = activeElement.offsetTop - inner.offsetTop;
-        const target = elTop - inner.clientHeight / 2 + activeElement.offsetHeight / 2;
-        inner.scrollTo({ top: target, behavior: 'smooth' });
-    });
 }
 
 function buildSidebarProjects() {
@@ -195,9 +211,12 @@ function killGalleryScroll() {
     galleryScrollReady = false;
 }
 
+let refreshTimer = 0;
 function markLoaded(el) {
     el.classList.add('loaded');
     el.parentElement?.classList.add('media-loaded');
+    clearTimeout(refreshTimer);
+    refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 200);
 }
 
 function hydrateVideo(video) {
@@ -239,11 +258,21 @@ export function setGalleryDockHandler(handler) {
 export function buildGallery() {
     if (galleryBuilt) return;
 
-    galleryTrack.innerHTML = PROJECTS.map((project, pi) => renderProjectArticle(project, pi)).join('');
+    let lastCategory = null;
+    const html = PROJECTS.map((project, pi) => {
+        let prefix = '';
+        if (project.category !== lastCategory) {
+            const guideSrc = GUIDE_IMAGES[project.category];
+            if (guideSrc) prefix = renderGuide(guideSrc, project.category, `guide-${project.category}`);
+            lastCategory = project.category;
+        }
+        return prefix + renderProjectArticle(project, pi);
+    }).join('');
+    galleryTrack.innerHTML = html + renderGuide(GUIDE_OUTRO, 'AI Workflow', 'guide-ai');
     galleryArticles = Array.from(galleryTrack.querySelectorAll('.project-article'));
     galleryBuilt = true;
 
-    galleryTrack.querySelectorAll('.project-hero img').forEach((img) => {
+    galleryTrack.querySelectorAll('.project-hero img, .gallery-guide img').forEach((img) => {
         if (img.complete) { markLoaded(img); return; }
         img.addEventListener('load', () => markLoaded(img), { once: true });
     });
@@ -270,14 +299,15 @@ export function initGalleryScroll() {
         onEnterBack: () => onGalleryActive('works'),
     });
 
-    galleryArticles.forEach((article, pi) => {
+    galleryArticles.forEach((article) => {
+        const pi = parseInt(article.dataset.pi, 10);
+
         const articleTrigger = ScrollTrigger.create({
             trigger: article,
-            start: 'top 55%',
-            end: 'bottom 55%',
-            onToggle: (self) => {
-                if (self.isActive) updateGalleryOverlay(pi);
-            },
+            start: 'top 60%',
+            end: 'bottom 40%',
+            onEnter: () => updateGalleryOverlay(pi),
+            onEnterBack: () => updateGalleryOverlay(pi),
         });
 
         galleryArticleTriggers.push(articleTrigger);
