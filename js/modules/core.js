@@ -21,6 +21,7 @@ export const CATEGORIES = [
     { id: 'operational', name: '运营设计', en: 'Operational Design' },
     { id: 'visual',      name: '视觉设计', en: 'Visual Design' },
     { id: 'motion',      name: '动效设计', en: 'Motion Design' },
+    { id: 'ai',          name: 'AI设计',   en: 'AI Design' },
 ];
 
 export const PROJECTS = [

@@ -148,7 +148,7 @@ function buildSidebarProjects() {
             </div>`;
         }).join('');
 
-        const emptyHint = projects.length === 0 ? '<div class="sc-empty">即将更新</div>' : '';
+        const emptyHint = projects.length === 0 ? '<div class="sc-empty"><span class="sc-empty-icon">✦</span>即将更新</div>' : '';
 
         return `<div class="sidebar-category" data-cat="${category.id}">
             <div class="sc-header">
@@ -268,7 +268,12 @@ export function buildGallery() {
         }
         return prefix + renderProjectArticle(project, pi);
     }).join('');
-    galleryTrack.innerHTML = html + renderGuide(GUIDE_OUTRO, 'AI Workflow', 'guide-ai');
+    const aiPlaceholder = `<div class="gallery-placeholder" id="gallery-ai-placeholder">
+        <div class="placeholder-icon">✦</div>
+        <p class="placeholder-title">AI Design</p>
+        <p class="placeholder-sub">即将更新 · Coming Soon</p>
+    </div>`;
+    galleryTrack.innerHTML = html + renderGuide(GUIDE_OUTRO, 'AI Workflow', 'guide-ai') + aiPlaceholder;
     galleryArticles = Array.from(galleryTrack.querySelectorAll('.project-article'));
     galleryBuilt = true;
 

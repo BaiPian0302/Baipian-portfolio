@@ -1,7 +1,7 @@
 # 个人作品集网站 — 项目文档
 
-> **最后更新**：2026-03-04  
-> **当前阶段**：正式项目（已完成首页、关于我、无限滚动条、作品画廊、自定义光标及全局视觉统一，高度还原 Figma 设计稿）
+> **最后更新**：2026-03-14
+> **当前阶段**：正式上线（GitHub Pages），已完成首页、关于我、跑马灯、作品画廊、导览分割页、移动端适配、无障碍优化与代码健康修复
 
 ---
 
@@ -12,142 +12,181 @@
 | **项目用途** | 个人求职作品集 |
 | **目标受众** | HR、设计总监、同行设计师 |
 | **核心人设** | 拥有优秀 AI 落地能力的运营设计师 |
-| **内容占比** | 运营视觉设计 80% ＋ AI 工作流探索 20% |
+| **内容占比** | 运营设计 10 项 + 视觉设计 4 项 + 动效设计 1 项（Bento 合集）+ AI 设计（规划中） |
 | **开发方式** | 代码自建（HTML/CSS/Vanilla JS），全 Vibe Coding |
-| **项目状态** | 精选 3 个核心项目，前端视觉与动效框架已全面搭建完毕 |
+| **部署方式** | GitHub Pages，仓库 `BaiPian0302/Baipian-portfolio` |
 
 ---
 
-## 2. 设计系统与规范 (Design System)
+## 2. 设计系统与规范
 
 ### 2.1 核心风格
-- **iOS 商业化设计**：务实、专业、高质感，避免过度花哨，强调信息的清晰传达。
-- **macOS 交互逻辑**：引入拟物化与系统级交互（如 Dock 底部导航栏、系统文件夹隐喻、全局平滑滚动）。
+- **iOS 商业化设计**：务实、专业、高质感，强调信息清晰传达。
+- **macOS 交互逻辑**：拟物化与系统级交互（Dock 顶部导航、文件夹隐喻、平滑滚动）。
 
 ### 2.2 视觉参数
 
 | 属性 | 规范值 |
 | :--- | :--- |
-| **排版字体** | `Inter` (数字/英文) + `Noto Sans SC` (中文) + `Outfit` (特殊标题) + `Pacifico` (手写标签) |
-| **背景基调** | `#f5f5f7` (Apple 浅灰) / 径向渐变背景 |
-| **品牌主题色** | `#48dbbd` (青绿色，贯穿全站装饰、交互反馈与进度条) |
-| **文字层级** | 主标题/正文 `#1d1d1f` / 辅助说明 `#86868b` / 弱化文本 `#ababaf` |
-| **圆角体系** | Bento 卡片 `24px` / 通用元素 `12px` |
+| **排版字体** | `Inter` (数字/英文) + `Noto Sans SC` (中文) + `Outfit` (标题) + `Pacifico` (手写标签) |
+| **背景基调** | `#f5f5f7` (Apple 浅灰) / 径向渐变点阵背景 |
+| **品牌主题色** | `#48dbbd` (青绿色) |
+| **文字层级** | 主文 `#1d1d1f` / 辅助 `#86868b` / 弱化 `#ababaf` |
+| **桌面端字号体系** | 标题 20px / 正文 15px / 标签 13px / 小标签 12px |
+| **移动端字号体系** | 标题 16px / 正文 14px / 标签 12px（480px: 15/13/12） |
+| **圆角体系** | Bento 卡片 24px / 通用 12px / 移动端 18px→14px |
 | **玻璃拟态** | `backdrop-filter: blur(20px~28px) saturate(1.4~1.6)` |
-| **阴影体系** | 多层柔和扩散阴影（避免硬边缘） |
-| **全局装饰** | 24px 间距微透明点阵纹理（带渐隐遮罩），青色方形特殊标记 |
 
-### 2.3 动画与物理反馈
-- **缓动曲线**：`power3.out` / `power4.out`（入场），`cubic-bezier(0.4, 0, 0.2, 1)`（悬停过渡）。
-- **自定义光标**：全局隐藏系统光标。默认状态为 `16px` 黑色圆点，悬停交互元素时形变为 `28px` 青绿色半透明圆环。
+### 2.3 动画与交互
+- **缓动曲线**：`power3.out`（入场）、`cubic-bezier(0.23, 1, 0.32, 1)`（悬停）
+- **自定义光标**：默认 16px 黑圆点 / 悬停 28px 青绿半透明圆环 / 触控设备自动隐藏（`matchMedia('(hover: hover)')` 检测）
+- **加载骨架屏**：Shimmer 渐变动画，图片/视频加载后 0.4s 淡入
 
 ---
 
-## 3. 页面架构与核心模块
+## 3. 页面架构
 
 ### 3.1 整体拓扑
 
 ```text
 ┌──────────────────────────────────────────────┐
-│  Section 1: Landing (首页视图，100vh)          │
-│  └─ 悬浮文件夹卡片 + 玻璃拟态标题 + 个人定位        │
-│              ↓ 向下平滑滚动                     │
-│  Section 2: About (关于我，Bento Grid)         │
-│  └─ 绝对定位百分比的 6 模块卡片阵列                │
-│              ↓ 向下平滑滚动                     │
-│  Section 3: Marquee (无限滚动分隔带)            │
-│  └─ 英文技能关键词无缝轮播                        │
-│              ↓ 向下平滑滚动                     │
-│  Section 4: Gallery (作品画廊，ScrollTrigger)   │
-│  └─ 左侧常驻目录 + 水平视差滚动画廊面板              │
+│  Section 1: Landing (首屏, 100dvh)            │
+│  └─ 4 个文件夹卡片 (Visual/Motion/AI/Operational) │
+│  └─ 玻璃拟态标题 + 液态光效游走                   │
+│              ↓ Lenis 平滑滚动                   │
+│  Section 2: About (Bento Grid)               │
+│  └─ 7 模块卡片 + 工具图标物理堆放动画              │
+│              ↓                                │
+│  Section 3: Marquee (技能关键词滚动带)           │
+│              ↓                                │
+│  Section 4: Gallery (垂直滚动作品画廊)           │
+│  └─ 左侧 sticky 分类侧边栏                     │
+│  └─ 导览标题页分割 + 项目展示 + AI 占位           │
 │                                              │
-│  [全局组件] Dock 导航栏 (底部) / 联系方式 Modal   │
+│  [全局] <header> Dock 导航栏 (顶部固定)          │
+│  [全局] Contact Modal (ARIA dialog + 焦点陷阱)  │
+│  [全局] Custom Cursor (仅桌面端)                │
 └──────────────────────────────────────────────┘
 ```
 
-### 3.2 首页 (Landing Section)
-- **视觉层**：中心大字 "PORTFOLIO"，配以液态玻璃胶囊背景游走。周围错落分布 4 个 macOS 风格文件夹（Banner / Motion / AI / Visual），底部带有中文标注。
-- **交互层**：文件夹基于鼠标位置带有轻微视差偏移（`gsap.quickTo`）。鼠标悬停时触发“开箱”动画（倾斜、放大，内层 3 张项目缩略图探出）。点击平滑滚动至画廊。
+### 3.2 首页 (Landing)
+- 中心 "PORTFOLIO" SVG 标题 + 液态玻璃胶囊动画
+- 4 个 macOS 文件夹卡片（Visual / Motion / AI / Operational），点击跳转到对应分类
+- 鼠标视差偏移 + 悬停开箱动画（GSAP quickTo）
+- CSS 预隐藏所有动画元素（防 FOUC），`<noscript>` 降级
 
-### 3.3 关于我 (About Section)
-采用精确复刻 Figma 比例的 **Bento Grid**（便当盒）布局，通过绝对定位实现像素级适配。
+### 3.3 关于我 (About)
+- Bento Grid 绝对定位布局（桌面端），≤1280px 切换为 CSS Grid 两列，≤768px 单列
+- 移动端通过 CSS `order` 重排卡片顺序：头像 → 简介 → 数据 → 经历1 → 经历2 → 实习 → 工具
+- 工具图标：桌面端物理堆放动画 / 移动端切换为 5 列网格（480px 为 3 列）
 
-- **网格比例**：`grid-template-columns: 1.6fr 1fr 1fr` / `grid-template-rows: 0.35fr 0.45fr 0.20fr`
-- **卡片分布**：
-  1. **Bio (个人介绍)**：左上大卡，描述业务价值与专长。
-  2. **Avatar (头像区)**：中上，青绿色渐变底，包含年龄、学历等基础属性。
-  3. **Stats (效率数据)**：右上深色卡片，展示 `47%`、`100%` 等核心数字，构成视觉重心反差。
-  4. **Experience 1 & 2 (工作经历)**：左下与中下部分，支持卡片内部滚动防溢出。
-  5. **Tools (软件技能)**：右下部分。**亮点交互**：9 个软件图标（PS/AI/Figma/SD等）在进入视口时触发 **“物理跌落堆放”** 动画，最终呈现错落有致的随机堆叠形态。
-  6. **Internships (实习经历)**：底部横向通栏展示。
+### 3.4 跑马灯 (Marquee)
+- 专业关键词无缝轮播，支持拖拽交互 + 悬停减速
 
-### 3.4 无限滚动带 (Marquee Section)
-- 作为 About 与 Gallery 之间的视觉缓冲。
-- `Visual Design ● Brand KV ● AI Model Assets` 等纯英文专业关键词，匀速向左滚动。
-- 支持鼠标拖拽 (`pointerdown` + `transform`) 交互，悬停时自动减速。
-
-### 3.5 作品画廊 (Gallery Section)
-利用 GSAP ScrollTrigger 将垂直滚动转化为**沉浸式水平滚动**。
-
-- **画廊轨道**：全屏卡片设计，支持视频 (`<video autoplay loop>`) 与静态图片。
-- **控制中心**：左侧毛玻璃侧边栏提供项目手风琴折叠菜单，可点击直达目标项目。
-- **进度交互**：右上角定制化独立进度条（移除拖拽滑动），点击或拖拽 Progress Thumb 实时映射至对应 ScrollTrigger 进度。
+### 3.5 作品画廊 (Gallery)
+- **布局**：CSS Grid 两栏（侧边栏 190px + 主区域），垂直滚动
+- **侧边栏**：`position: sticky`，手风琴分类折叠（Operational / Visual / Motion / AI）
+- **导览页**：每个分类前插入全宽导览标题图（Guide），共 4 张（含 AI 结尾页）
+- **项目跟踪**：ScrollTrigger `onEnter`/`onEnterBack` 触发侧边栏高亮、计数器更新、分类自动展开
+- **Bento 视频**：动效设计板块以 Bento Grid 形式展示，IntersectionObserver 懒加载 + canplay 触发
+- **AI 占位**：Gallery 末尾显示虚线边框占位卡片（"即将更新"）
+- **加载优化**：`.project-hero` 加 `min-height: 40vh` 防止懒加载图片高度塌陷导致 trigger 错位
 
 ### 3.6 Dock 导航栏
-- **触发机制**：位于页面底部，悬停时基于中心距离计算放大倍率（类似 macOS，基础 `50px` -> 最大 `76px`）。
-- **路由映射**：点击后执行平滑锚点跳转，利用 ScrollTrigger 的 `onEnter`/`onLeave` 自动同步点亮当前区域的图标。
+- 顶部固定，品牌 logo + 两组胶囊导航（Homepage/About/Work + Connect/Resume）
+- ScrollTrigger 自动高亮当前区域
+- Gallery 进入时显示当前项目名悬浮胶囊
 
 ---
 
-## 4. 技术选型与性能
+## 4. 技术选型
 
-| 技术 | 用途 | 备注 |
+| 技术 | 版本 | 用途 |
 | :--- | :--- | :--- |
-| **HTML5 & CSS3** | 骨架与现代样式 | 原生 CSS 变量、Grid/Flex 布局、CSS 动画、毛玻璃 |
-| **Vanilla JavaScript** | 交互逻辑驱动 | 无框架，基于 ES6+ 原生实现，DOM 事件委托 |
-| **Lenis** | 平滑滚动引擎 | `1.1.18` 版本，接管原生滚动，实现物理惯性 |
-| **GSAP & ScrollTrigger** | 核心动画引擎 | `3.12.5` 版本，处理所有视差、滚动钩子与时间轴 |
+| **HTML5 + CSS3** | — | 语义化结构、CSS 变量、Grid/Flex、`100dvh`、`overflow-x: clip` |
+| **Vanilla JS (ES Modules)** | ES2020+ | 模块化架构，零框架依赖 |
+| **Lenis** | 1.1.18 | 平滑滚动引擎 |
+| **GSAP + ScrollTrigger** | 3.12.5 | 动画引擎、滚动触发 |
 
-> **极简理念**：零构建工具（No Webpack/Vite），无 npm 依赖，无 CSS 预处理器，所有资源即开即用。
+> **极简理念**：零构建工具，无 npm，CDN 脚本带 SRI 校验，`<script>` 置于 `</body>` 前
 
 ---
 
-## 5. 项目结构
+## 5. 无障碍与安全
+
+| 项目 | 实现 |
+| :--- | :--- |
+| **语义化** | `<main>` 包裹内容区，`<h1>`→`<h2>`→`<h3>` 完整层级，`.sr-only` 视觉隐藏 |
+| **模态框** | `role="dialog"` + `aria-modal` + `aria-labelledby` + 焦点陷阱 |
+| **触控适配** | `matchMedia('(hover: hover) and (pointer: fine)')` 检测，`@media (hover: none)` CSS 降级 |
+| **Safe Area** | `env(safe-area-inset-*)` 适配刘海/灵动岛设备 |
+| **CDN 安全** | 所有第三方脚本带 `integrity` + `crossorigin="anonymous"` |
+| **剪贴板** | `navigator.clipboard` + `execCommand('copy')` 双重降级 |
+
+---
+
+## 6. 项目结构
 
 ```text
 portfolio/
-├── index.html                  # 主页面（全站唯一 HTML）
+├── index.html                  # 主页面
+├── PROJECT.md                  # 本文档
 ├── css/
-│   └── style.css               # 核心样式表
+│   ├── style.css               # 主样式表（含响应式 768px/480px 断点）
+│   └── gallery.css             # Gallery 侧边栏与布局样式
 ├── js/
-│   └── main.js                 # 交互逻辑、动效驱动与项目数据注入
+│   ├── main.js                 # 入口，初始化各模块
+│   └── modules/
+│       ├── core.js             # Lenis/GSAP 初始化、项目数据、工具函数
+│       ├── dock.js             # 导航栏交互与高亮
+│       ├── gallery.js          # Gallery 渲染、侧边栏、滚动跟踪
+│       └── sections.js         # 首页动画、About 动画、联系弹窗、光标
 ├── assets/
 │   ├── images/
-│   │   ├── projects/           # 作品图片资源（按项目归类）
-│   │   ├── tools/              # About 区域物理堆放软件图标 (icon1~9.png)
-│   │   ├── stickers/           # 首页文件夹上的潮流贴纸
-│   │   └── ui/                 # 核心 UI 矢量素材 (标题 SVG、文件夹 SVG)
-│   └── files/                  # 待接入：简历 PDF
-└── PROJECT.md                  # 本文档
+│   │   ├── projects/           # 作品图片（按分类子目录）
+│   │   ├── Guide/              # 分类导览标题页（4 张 webp）
+│   │   ├── tools/              # 工具图标 (icon1~9.png)
+│   │   ├── stickers/           # 文件夹贴纸
+│   │   └── ui/                 # UI 矢量素材（标题/文件夹/导航 SVG）
+│   └── (favicon 待添加)
+└── docs/                       # 规划文档（不被网站引用）
+    ├── project-copy.md         # 项目文案（中英双语）
+    ├── project-03-detail.md    # 圣诞活动详细方案
+    ├── project-08-detail.md    # Banner 合集拆解
+    ├── resume.md               # 简历内容
+    ├── resume-bosszhipin.md    # Boss 直聘版简历
+    └── portfolio-intro-hiring-manager.md  # HR 版介绍信
 ```
 
 ---
 
-## 6. 待办与迭代清单
+## 7. 已完成与待办
 
-### ✅ 已完成 (Phase 1)
-- [x] 全站基础框架与单页平滑滚动 (Lenis + GSAP)
-- [x] 首页 3D 浮动文件夹与开箱微交互
-- [x] About 区域 Bento 布局重构（精准对齐 Figma 数据）
-- [x] About 区域软件图标的“物理跌落堆放” CSS 动画
-- [x] Marquee 无限轮播带与拖拽事件
-- [x] Gallery 水平画廊、自定义交互进度条与侧边栏联动
-- [x] 全局自定义交互光标 (Custom Cursor) 取代系统光标
-- [x] macOS 风格底部 Dock 栏动态放大效果与滚动同步
-- [x] 响应式降级：移动端与窄屏设备的安全显示策略
+### ✅ 已完成
+- [x] 全站框架与 Lenis 平滑滚动
+- [x] 首页 3D 文件夹卡片、开箱动画、视差浮动
+- [x] About Bento Grid（桌面精确定位 + 响应式网格降级）
+- [x] 工具图标物理堆放动画（移动端切换为网格布局）
+- [x] Marquee 轮播带与拖拽交互
+- [x] Gallery 垂直滚动画廊 + sticky 侧边栏 + 分类手风琴
+- [x] 导览标题页分割（4 张 Guide 图片）
+- [x] AI 分类占位（侧边栏 + Gallery 占位卡片）
+- [x] Bento 视频布局（动效设计合集，IntersectionObserver 懒加载）
+- [x] 全局自定义光标（桌面端）
+- [x] Dock 顶部导航 + 区域高亮 + 当前项目悬浮胶囊
+- [x] 联系弹窗（ARIA + 焦点陷阱 + 剪贴板双重降级）
+- [x] 移动端适配（768px / 480px 双断点 + safe-area + dvh）
+- [x] Shimmer 骨架屏加载 + 图片/视频淡入
+- [x] FOUC 修复（CSS 预隐藏 + noscript 降级）
+- [x] 代码健康修复（SRI、`:has()` 兼容、`overflow-x: clip` 降级、通配符优化）
+- [x] 无障碍（`<main>`、标题层级、ARIA dialog、触控检测）
+- [x] 项目文案文档（中英双语，含四章节介绍）
+- [x] GitHub Pages 部署
 
-### 🔄 待推进 (Phase 2 - 部署与优化)
-- [ ] **资产最终替换**：画廊项目图片/视频更新为高质量定稿。
-- [ ] **性能优化**：引入首屏骨架、媒体懒加载、WebP 深度压缩。
-- [ ] **SEO 与配置**：Favicon 设计、`meta` OG 标签补全。
-- [ ] **静态部署**：托管至 Cloudflare Pages 或 Vercel，绑定个人域名。
+### 🔄 待推进
+- [ ] **Favicon**：设计并添加 `favicon.svg` / `favicon.ico`
+- [ ] **AI 分类内容**：填充 AI 设计项目（替换占位卡片）
+- [ ] **资产优化**：WebP 深度压缩、图片尺寸属性（防布局偏移）
+- [ ] **项目详情页**：将 `docs/project-copy.md` 中的文案接入网站展示
+- [ ] **性能监控**：Lighthouse 评分优化、Core Web Vitals 达标
+- [ ] **自定义域名**：绑定个人域名
