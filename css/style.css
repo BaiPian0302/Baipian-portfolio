@@ -868,6 +868,7 @@ body::-webkit-scrollbar { width: 0; height: 0; }
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 20%;
     display: block;
 }
 
@@ -1432,16 +1433,32 @@ body::-webkit-scrollbar { width: 0; height: 0; }
 .dock-item {
     border: none;
     background: transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.2s ease;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    line-height: 1;
+}
+
+.dock-en {
     font-family: 'Outfit', sans-serif;
     font-size: 20px;
     font-weight: 400;
     color: #000;
-    cursor: pointer;
-    white-space: nowrap;
     text-transform: uppercase;
     letter-spacing: -0.4px;
-    transition: opacity 0.2s ease;
-    padding: 0;
+}
+
+.dock-cn {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 9px;
+    font-weight: 400;
+    color: #9e9e9e;
+    letter-spacing: 0.04em;
 }
 
 .dock-item:focus-visible {
@@ -1453,8 +1470,12 @@ body::-webkit-scrollbar { width: 0; height: 0; }
     opacity: 0.6;
 }
 
-.dock-item.active {
+.dock-item.active .dock-en {
     font-weight: 500;
+}
+
+.dock-item.active .dock-cn {
+    color: #48dbbd;
 }
 
 /* ── 6a. Dock Responsive ── */
@@ -1480,8 +1501,11 @@ body::-webkit-scrollbar { width: 0; height: 0; }
         gap: 12px;
     }
 
-    .dock-item {
+    .dock-en {
         font-size: 16px;
+    }
+    .dock-cn {
+        font-size: 8px;
     }
 }
 
@@ -1699,7 +1723,8 @@ body.cursor-active .sc-project {
         gap: 10px;
     }
 
-    .dock-item { font-size: 14px; }
+    .dock-en { font-size: 14px; }
+    .dock-cn { font-size: 8px; }
 
     /* — About — */
     .section-about {
@@ -1838,7 +1863,8 @@ body.cursor-active .sc-project {
 
     .dock-pills { padding: 10px 12px; gap: 6px; }
     .dock { height: 38px; padding: 0 12px; gap: 8px; }
-    .dock-item { font-size: 13px; }
+    .dock-en { font-size: 13px; }
+    .dock-cn { font-size: 7px; }
 
     .bento-item { padding: 16px; border-radius: 14px; }
     .bio-heading { font-size: 15px; }
