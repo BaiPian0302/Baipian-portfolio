@@ -13,10 +13,14 @@ const dockActionMap = {
     about: () => scrollToSection(sectionAbout),
     contact: () => window.__openContactModal?.(),
     resume: () => {
-        const url = 'assets/files/resume.pdf';
+        const url = 'assets/resume.pdf';
+        const filename = '白片-AIGC视觉设计师-简历.pdf';
         fetch(url, { method: 'HEAD' }).then(r => {
-            if (r.ok) window.open(url, '_blank');
-            else alert('简历正在准备中，请稍后再试 :)');
+            if (!r.ok) { alert('简历正在准备中，请稍后再试 :)'); return; }
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
         }).catch(() => alert('简历正在准备中，请稍后再试 :)'));
     },
 };
