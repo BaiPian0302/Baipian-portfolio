@@ -557,11 +557,13 @@ body::-webkit-scrollbar { width: 0; height: 0; }
     width: 100%;
     height: auto;
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transform: scale(1.006);
+    transition: opacity 0.45s ease, transform 0.45s ease;
 }
 
 .gallery-guide img.loaded {
     opacity: 1;
+    transform: scale(1);
 }
 
 .gallery-placeholder {
@@ -598,6 +600,124 @@ body::-webkit-scrollbar { width: 0; height: 0; }
     letter-spacing: 0.02em;
 }
 
+/* ── 3b. Interactive Project Grid ── */
+
+.interactive-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.interactive-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--text-primary);
+    border-radius: 24px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    overflow: hidden;
+    background: white;
+    transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+                box-shadow 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+                border-color 0.35s ease;
+}
+
+.interactive-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+    border-color: rgba(72,219,189,0.15);
+}
+
+.interactive-cover {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    min-height: 140px;
+    background: #e8e8ec;
+    background-image: linear-gradient(90deg, #e8e8ec 0%, #f0f0f3 40%, #e8e8ec 80%);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s ease-in-out infinite;
+    overflow: hidden;
+}
+
+.interactive-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.interactive-cover img.loaded { opacity: 1; }
+.interactive-cover.media-loaded { animation: none; background-image: none; }
+
+.interactive-body {
+    padding: 16px 20px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex: 1;
+    position: relative;
+}
+
+.interactive-header {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.interactive-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+    flex-shrink: 0;
+}
+
+.interactive-tag {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-left: auto;
+    white-space: nowrap;
+}
+
+.interactive-desc {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    padding-right: 40px;
+}
+
+.interactive-cta {
+    position: absolute;
+    right: 18px;
+    bottom: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-style: normal;
+    color: var(--text-tertiary);
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.interactive-card:hover .interactive-cta {
+    background: #48dbbd;
+    border-color: #48dbbd;
+    color: white;
+}
+
 .project-article {
     display: flex;
     flex-direction: column;
@@ -623,7 +743,8 @@ body::-webkit-scrollbar { width: 0; height: 0; }
     width: 100%;
     height: auto;
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transform: scale(1.006);
+    transition: opacity 0.45s ease, transform 0.45s ease;
 }
 
 .project-hero.media-loaded {
@@ -635,6 +756,7 @@ body::-webkit-scrollbar { width: 0; height: 0; }
 .project-hero img.loaded,
 .project-hero video.loaded {
     opacity: 1;
+    transform: scale(1);
 }
 
 /* ── 3c-2. Bento Video Layout ── */
@@ -642,7 +764,33 @@ body::-webkit-scrollbar { width: 0; height: 0; }
 .project-bento-layout {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 22px;
+}
+
+.bento-section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 10px 2px -6px;
+    padding-top: 8px;
+}
+
+.bento-section-kicker {
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #48dbbd;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.bento-section-heading h3 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 700;
+    color: rgba(29,29,31,0.82);
+    letter-spacing: -0.03em;
 }
 
 .bento-section {
@@ -1385,7 +1533,9 @@ body::-webkit-scrollbar { width: 0; height: 0; }
 
 .dock-strip-top {
     height: 12px;
-    background: white;
+    background: rgba(255,255,255,0.72);
+    backdrop-filter: blur(18px) saturate(1.2);
+    -webkit-backdrop-filter: blur(18px) saturate(1.2);
 }
 
 .dock-strip-corners {
@@ -1422,10 +1572,12 @@ body::-webkit-scrollbar { width: 0; height: 0; }
     justify-content: center;
     gap: 16px;
     padding: 0 24px;
-    height: 51px;
-    background: rgba(255,255,255,0.8);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    height: 46px;
+    background: rgba(255,255,255,0.62);
+    backdrop-filter: blur(20px) saturate(1.3);
+    -webkit-backdrop-filter: blur(20px) saturate(1.3);
+    border: 1px solid rgba(255,255,255,0.72);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.055);
     border-radius: 80px;
     pointer-events: auto;
 }
@@ -1446,16 +1598,16 @@ body::-webkit-scrollbar { width: 0; height: 0; }
 
 .dock-en {
     font-family: 'Outfit', sans-serif;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 400;
-    color: #000;
+    color: rgba(29,29,31,0.78);
     text-transform: uppercase;
     letter-spacing: -0.4px;
 }
 
 .dock-cn {
     font-family: 'Noto Sans SC', sans-serif;
-    font-size: 9px;
+    font-size: 8px;
     font-weight: 400;
     color: #9e9e9e;
     letter-spacing: 0.04em;
@@ -1835,6 +1987,13 @@ body.cursor-active .sc-project {
     .gallery-guide       { border-radius: 16px; }
     .gallery-placeholder { border-radius: 16px; padding: 48px 24px; min-height: 20vh; }
     .placeholder-title   { font-size: 18px; }
+    .interactive-grid    { grid-template-columns: 1fr; gap: 14px; }
+    .interactive-card    { border-radius: 16px; }
+    .interactive-cover   { aspect-ratio: 16 / 9; min-height: 100px; }
+    .interactive-body    { padding: 14px 16px 16px; }
+    .interactive-name    { font-size: 14px; }
+    .interactive-desc    { font-size: 12px; padding-right: 38px; }
+    .interactive-cta     { right: 14px; bottom: 14px; width: 28px; height: 28px; font-size: 13px; }
     .placeholder-sub     { font-size: 12px; }
 
     .project-bento-layout { gap: 12px; }

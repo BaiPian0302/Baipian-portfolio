@@ -1,6 +1,6 @@
-import { initGalleryOnDemand, setGalleryDockHandler } from './modules/gallery.js';
-import { initDockInteractions, setActiveDock } from './modules/dock.js';
-import { initAfterLoad, initContactModal } from './modules/sections.js';
+import { initGalleryOnDemand, setGalleryDockHandler } from './modules/gallery.js?v=20260508-motion-first';
+import { initDockInteractions, setActiveDock } from './modules/dock.js?v=20260508-motion-first';
+import { initAfterLoad, initContactModal } from './modules/sections.js?v=20260508-motion-first';
 
 setGalleryDockHandler(setActiveDock);
 initGalleryOnDemand();

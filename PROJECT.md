@@ -1,7 +1,7 @@
-# 个人作品集网站 — 项目文档
+﻿# 个人作品集网站 — 项目文档
 
-> **最后更新**：2026-03-14
-> **当前阶段**：正式上线（GitHub Pages），已完成首页、关于我、跑马灯、作品画廊、导览分割页、移动端适配、无障碍优化与代码健康修复
+> **最后更新**：2026-03-25
+> **当前阶段**：正式上线（GitHub Pages），已完成首页、关于我、跑马灯、作品画廊、导览分割页、动效作品更新、移动端适配、无障碍优化与代码健康修复
 
 ---
 
@@ -12,7 +12,7 @@
 | **项目用途** | 个人求职作品集 |
 | **目标受众** | HR、设计总监、同行设计师 |
 | **核心人设** | 拥有优秀 AI 落地能力的运营设计师 |
-| **内容占比** | 运营设计 10 项 + 视觉设计 4 项 + 动效设计 1 项（Bento 合集）+ AI 设计（规划中） |
+| **内容占比** | 动效设计 1 项（Bento 合集）+ 运营设计 8 项 + 视觉设计 4 项，AI 设计暂不添加 |
 | **开发方式** | 代码自建（HTML/CSS/Vanilla JS），全 Vibe Coding |
 | **部署方式** | GitHub Pages，仓库 `BaiPian0302/Baipian-portfolio` |
 
@@ -149,6 +149,10 @@ portfolio/
 │   │   ├── stickers/           # 文件夹贴纸
 │   │   └── ui/                 # UI 矢量素材（标题/文件夹/导航 SVG）
 │   └── (favicon 待添加)
+├── projects/                      # AI 设计交互 Demo（暂不添加到线上）
+│   ├── glitch-converter.html      # 赛博故障转换器（Canvas 2D）
+│   ├── chronos.html               # Chronos 光影时空（React + AI API）
+│   └── angles.html                # ANGLES 视角合成器（React + Three.js）
 └── docs/                       # 规划文档（不被网站引用）
     ├── project-copy.md         # 项目文案（中英双语）
     ├── project-03-detail.md    # 圣诞活动详细方案
@@ -170,7 +174,7 @@ portfolio/
 - [x] Marquee 轮播带与拖拽交互
 - [x] Gallery 垂直滚动画廊 + sticky 侧边栏 + 分类手风琴
 - [x] 导览标题页分割（4 张 Guide 图片）
-- [x] AI 分类占位（侧边栏 + Gallery 占位卡片）
+- [ ] AI 分类交互 Demo（暂不添加到线上）
 - [x] Bento 视频布局（动效设计合集，IntersectionObserver 懒加载）
 - [x] 全局自定义光标（桌面端）
 - [x] Dock 顶部导航 + 区域高亮 + 当前项目悬浮胶囊
@@ -185,8 +189,10 @@ portfolio/
 
 ### 🔄 待推进
 - [ ] **Favicon**：设计并添加 `favicon.svg` / `favicon.ico`
-- [ ] **AI 分类内容**：填充 AI 设计项目（替换占位卡片）
+- [ ] **AI 分类内容**：3 个交互 Demo 暂不添加，待封面和说明完善后再上线
 - [ ] **资产优化**：WebP 深度压缩、图片尺寸属性（防布局偏移）
 - [ ] **项目详情页**：将 `docs/project-copy.md` 中的文案接入网站展示
 - [ ] **性能监控**：Lighthouse 评分优化、Core Web Vitals 达标
 - [ ] **自定义域名**：绑定个人域名
+
+

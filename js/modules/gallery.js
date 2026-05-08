@@ -13,7 +13,7 @@ import {
     galleryNowNum,
     galleryNowName,
     formatIndex,
-} from './core.js';
+} from './core.js?v=20260508-motion-first';
 
 let activePi = 0;
 let expandedCatId = null;
@@ -32,20 +32,56 @@ function ensureGalleryArticles() {
     }
 }
 
+function getCategoryProgress(pi) {
+    const project = PROJECTS[pi];
+    if (!project) return { current: pi + 1, total: PROJECTS.length };
+
+    const categoryProjects = PROJECTS
+        .map((item, index) => ({ ...item, index }))
+        .filter((item) => item.category === project.category);
+
+    return {
+        current: categoryProjects.findIndex((item) => item.index === pi) + 1,
+        total: categoryProjects.length,
+    };
+}
+
 const GUIDE_IMAGES = {
     operational: 'assets/images/Guide/1.Operational.webp',
     visual:      'assets/images/Guide/2.Visual.webp',
     motion:      'assets/images/Guide/3.Motion.webp',
+    ai:          'assets/images/Guide/4.AI.webp',
 };
-const GUIDE_OUTRO = 'assets/images/Guide/4.AI.webp';
 
 function renderGuide(src, label, id) {
     const idAttr = id ? ` id="${id}"` : '';
     return `<div class="gallery-guide"${idAttr}><img src="${src}" alt="${label}" loading="lazy" draggable="false"></div>`;
 }
 
+function renderInteractiveGrid(projects) {
+    const cards = projects.map((p) => {
+        const coverImg = p.cover
+            ? `<img src="${p.cover}" alt="${p.name}" loading="lazy" draggable="false">`
+            : '';
+        return `<a class="interactive-card" href="${p.href}" target="_blank" rel="noopener">
+            <div class="interactive-cover">${coverImg}</div>
+            <div class="interactive-body">
+                <div class="interactive-header">
+                    <h3 class="interactive-name">${p.name}</h3>
+                    <span class="interactive-tag">${p.tag}</span>
+                </div>
+                <p class="interactive-desc">${p.desc}</p>
+                <span class="interactive-cta">↗</span>
+            </div>
+        </a>`;
+    }).join('');
+
+    return `<div class="interactive-grid">${cards}</div>`;
+}
+
 function renderProjectArticle(project, pi) {
     if (project.type === 'bento') return renderBentoArticle(project, pi);
+    if (project.type === 'interactive') return null;
 
     return `<article class="project-article" data-pi="${pi}" id="project-${pi}">
         <div class="project-hero">
@@ -56,12 +92,18 @@ function renderProjectArticle(project, pi) {
 
 function renderBentoArticle(project, pi) {
     const base = 'assets/images/projects/motion-design/';
-    const sectionsHtml = (project.bentoSections || []).map((section) => {
+    const sectionsHtml = (project.bentoSections || []).map((section, sectionIndex) => {
         const extraClass = section.fit ? ` bento-fit-${section.fit}` : '';
         const cellsHtml = section.items
             .map((filename) => `<div class="bento-cell"><video data-src="${base}${filename}" muted loop playsinline preload="none"></video></div>`)
             .join('');
-        return `<div class="bento-section${extraClass}" style="--bento-cols:${section.cols}; --cell-ratio:${section.ratio}">${cellsHtml}</div>`;
+        const sectionTitle = section.title
+            ? `<div class="bento-section-heading" id="motion-section-${sectionIndex}">
+                <span class="bento-section-kicker">${section.label || `Motion ${formatIndex(sectionIndex + 1)}`}</span>
+                <h3>${section.title}</h3>
+            </div>`
+            : '';
+        return `${sectionTitle}<div class="bento-section${extraClass}" style="--bento-cols:${section.cols}; --cell-ratio:${section.ratio}">${cellsHtml}</div>`;
     }).join('');
 
     return `<article class="project-article" data-pi="${pi}" id="project-${pi}">
@@ -142,10 +184,25 @@ function buildSidebarProjects() {
                 ? `<img src="${project.cover}" alt="${project.name}" loading="eager" decoding="async">`
                 : `<div class="sc-cover-fallback ${project.grad || 'grad-4'}"><span>${project.icon || '●'}</span></div>`;
 
+            const progress = getCategoryProgress(project.pi);
+
+            const motionSections = project.type === 'bento'
+                ? `<div class="sc-subnav">
+                    ${(project.bentoSections || []).map((section, sectionIndex) => `
+                        <button class="sc-subitem" type="button" data-motion-section="${sectionIndex}">
+                            <span>${formatIndex(sectionIndex + 1)}</span>${section.title || section.label || `Section ${sectionIndex + 1}`}
+                        </button>
+                    `).join('')}
+                </div>`
+                : '';
+
             return `<div class="sc-project" data-pi="${project.pi}">
-                <div class="sc-cover"><span class="sc-num">${formatIndex(project.pi + 1)}</span>${coverImg}</div>
-                <span class="sc-title">${project.name}</span>
-            </div>`;
+                <div class="sc-cover"><span class="sc-num">${formatIndex(progress.current)}</span>${coverImg}</div>
+                <div class="sc-meta">
+                    <span class="sc-title">${project.name}</span>
+                    <span class="sc-tag">${project.tag}</span>
+                </div>
+            </div>${motionSections}`;
         }).join('');
 
         const emptyHint = projects.length === 0 ? '<div class="sc-empty"><span class="sc-empty-icon">✦</span>即将更新</div>' : '';
@@ -175,6 +232,16 @@ function buildSidebarProjects() {
         });
     });
 
+    sidebarProjects.querySelectorAll('.sc-subitem').forEach((item) => {
+        item.addEventListener('click', (event) => {
+            event.stopPropagation();
+            buildGallery();
+            initGalleryScroll();
+            const target = document.getElementById(`motion-section-${item.dataset.motionSection}`);
+            if (target) lenis.scrollTo(target, { offset: SCROLL.projectOffset, duration: SCROLL.projectDuration });
+        });
+    });
+
     sidebarProjects.querySelectorAll('.sc-cover img').forEach((img) => {
         const onLoad = () => { img.classList.add('loaded'); img.closest('.sc-cover')?.classList.add('media-loaded'); };
         if (img.complete) { onLoad(); return; }
@@ -183,7 +250,8 @@ function buildSidebarProjects() {
 
     expandCategory(PROJECTS[0].category);
     updateSidebarProjectHighlight(0);
-    sidebarCounter.textContent = `01 / ${formatIndex(PROJECTS.length)}`;
+    const initialProgress = getCategoryProgress(0);
+    sidebarCounter.textContent = `01 / ${formatIndex(initialProgress.total)}`;
 }
 
 function updateGalleryOverlay(pi) {
@@ -193,8 +261,11 @@ function updateGalleryOverlay(pi) {
     activePi = pi;
     const num = formatIndex(pi + 1);
 
-    sidebarCounter.textContent = `${num} / ${formatIndex(PROJECTS.length)}`;
-    if (galleryNowNum) galleryNowNum.textContent = num;
+    const progress = getCategoryProgress(pi);
+    const categoryProgress = `${formatIndex(progress.current)} / ${formatIndex(progress.total)}`;
+
+    sidebarCounter.textContent = categoryProgress;
+    if (galleryNowNum) galleryNowNum.textContent = categoryProgress;
     if (galleryNowName) galleryNowName.textContent = project.name;
 
     onGalleryActive('works');
@@ -259,21 +330,28 @@ export function buildGallery() {
     if (galleryBuilt) return;
 
     let lastCategory = null;
-    const html = PROJECTS.map((project, pi) => {
-        let prefix = '';
+    const interactiveProjects = [];
+    const parts = [];
+
+    PROJECTS.forEach((project, pi) => {
         if (project.category !== lastCategory) {
             const guideSrc = GUIDE_IMAGES[project.category];
-            if (guideSrc) prefix = renderGuide(guideSrc, project.category, `guide-${project.category}`);
+            if (guideSrc) parts.push(renderGuide(guideSrc, project.category, `guide-${project.category}`));
             lastCategory = project.category;
         }
-        return prefix + renderProjectArticle(project, pi);
-    }).join('');
-    const aiPlaceholder = `<div class="gallery-placeholder" id="gallery-ai-placeholder">
-        <div class="placeholder-icon">✦</div>
-        <p class="placeholder-title">AI Design</p>
-        <p class="placeholder-sub">即将更新 · Coming Soon</p>
-    </div>`;
-    galleryTrack.innerHTML = html + renderGuide(GUIDE_OUTRO, 'AI Workflow', 'guide-ai') + aiPlaceholder;
+        if (project.type === 'interactive') {
+            interactiveProjects.push(project);
+            parts.push(`<article class="project-article" data-pi="${pi}" id="project-${pi}" style="display:none"></article>`);
+            return;
+        }
+        parts.push(renderProjectArticle(project, pi));
+    });
+
+    if (interactiveProjects.length) {
+        parts.push(renderInteractiveGrid(interactiveProjects));
+    }
+
+    galleryTrack.innerHTML = parts.join('');
     galleryArticles = Array.from(galleryTrack.querySelectorAll('.project-article'));
     galleryBuilt = true;
 
@@ -342,10 +420,18 @@ export function switchProject(pi) {
     buildGallery();
     initGalleryScroll();
 
-    const target = document.getElementById(`project-${pi}`);
+    let target = document.getElementById(`project-${pi}`);
     if (!target) return;
 
     updateSidebarProjectHighlight(pi);
+
+    if (target.style.display === 'none') {
+        const project = PROJECTS[pi];
+        target = document.getElementById(`guide-${project?.category}`)
+              || galleryTrack.querySelector('.interactive-grid')
+              || target;
+    }
+
     lenis.scrollTo(target, { offset: SCROLL.projectOffset, duration: SCROLL.projectDuration });
 }
 

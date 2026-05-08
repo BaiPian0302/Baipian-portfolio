@@ -5,7 +5,7 @@ import {
     dockItems,
     scrollToSection,
     scrollToTop,
-} from './core.js';
+} from './core.js?v=20260508-motion-first';
 
 const dockActionMap = {
     home: () => scrollToTop(),
@@ -14,7 +14,7 @@ const dockActionMap = {
     contact: () => window.__openContactModal?.(),
     resume: () => {
         const url = 'assets/resume.pdf';
-        const filename = '白片-AIGC视觉设计师-简历.pdf';
+        const filename = '彭泽绘-AIGC视觉设计师-简历.pdf';
         fetch(url, { method: 'HEAD' }).then(r => {
             if (!r.ok) { alert('简历正在准备中，请稍后再试 :)'); return; }
             const a = document.createElement('a');

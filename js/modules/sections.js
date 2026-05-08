@@ -3,6 +3,7 @@ import {
     ScrollTrigger,
     lenis,
     MOTION,
+    PROJECTS,
     sectionLanding,
     scrollHint,
     sectionAbout,
@@ -11,9 +12,9 @@ import {
     dockWrapper,
     createRafThrottled,
     scrollToTop,
-} from './core.js';
-import { switchProject, initGalleryScroll } from './gallery.js';
-import { initAboutDockHighlight, initGalleryNowPill } from './dock.js';
+} from './core.js?v=20260508-motion-first';
+import { switchProject, initGalleryScroll } from './gallery.js?v=20260508-motion-first';
+import { initAboutDockHighlight, initGalleryNowPill } from './dock.js?v=20260508-motion-first';
 
 let folderInteractionsReady = false;
 let resizeTimer;
@@ -155,12 +156,17 @@ function initFolderInteractions() {
         });
 
         folder.addEventListener('click', () => {
+            const categoryId = folder.dataset.category;
             const pi = folder.dataset.project;
             const guideId = folder.dataset.guide;
-            if (pi !== undefined && pi !== '') {
+
+            if (categoryId) {
+                const targetIndex = PROJECTS.findIndex((project) => project.category === categoryId);
+                if (targetIndex >= 0) switchProject(targetIndex);
+            } else if (pi !== undefined && pi !== '') {
                 switchProject(parseInt(pi, 10));
             } else if (guideId) {
-                import('./gallery.js').then(({ buildGallery }) => {
+                import('./gallery.js?v=20260508-motion-first').then(({ buildGallery }) => {
                     buildGallery();
                     const target = document.getElementById(guideId);
                     if (target) lenis.scrollTo(target, { offset: -100, duration: 1.2 });
