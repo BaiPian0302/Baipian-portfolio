@@ -1,0 +1,254 @@
+﻿/* ═══════════════════════════════════════
+   9. Responsive
+   ═══════════════════════════════════════ */
+
+/* ── 9a. Tablet & below (≤768px) ── */
+
+@media (max-width: 768px) {
+
+    /* — Landing — */
+    .section-landing {
+        padding: 0 env(safe-area-inset-right) 0 env(safe-area-inset-left);
+    }
+
+    .title-container   { width: clamp(240px, 72vw, 400px); }
+    .landing-subtitle  { font-size: 15px; letter-spacing: 0.08em; margin-top: 18px; }
+    .title-author,
+    .title-year        { font-size: 12px; line-height: 18px; }
+
+    .landing-blob      { display: none; }
+    .accent-dots-grid  { display: none; }
+    .title-glow-pill   { display: none; }
+    .landing-note      { display: none; }
+
+    .folder-card {
+        width: clamp(120px, 34vw, 156px);
+        opacity: 0.8;
+    }
+    .folder-card--banner {
+        top: 6% !important;
+        left: 2% !important;
+        right: auto !important;
+        bottom: auto !important;
+    }
+    .folder-card--motion {
+        top: 3% !important;
+        right: 0 !important;
+        left: auto !important;
+        bottom: auto !important;
+    }
+    .folder-card--ai {
+        bottom: 20% !important;
+        left: -2% !important;
+        top: auto !important;
+        right: auto !important;
+    }
+    .folder-card--visual {
+        bottom: 16% !important;
+        right: 0 !important;
+        top: auto !important;
+        left: auto !important;
+    }
+    .folder-photo  { border-width: 3px; border-radius: 8px; }
+    .folder-label  { font-size: 16px; }
+    .folder-cn     { font-size: 10px; }
+
+    .scroll-hint   { bottom: 72px; }
+
+    /* — Dock — */
+    .dock-wrapper      { height: auto; }
+    .dock-bg-strip     { display: none; }
+
+    .dock-pills {
+        position: relative;
+        top: auto;
+        left: auto;
+        padding: 12px 16px;
+        padding-top: calc(12px + env(safe-area-inset-top));
+        gap: 8px;
+        justify-content: center;
+    }
+
+    .dock {
+        height: 40px;
+        padding: 0 14px;
+        gap: 10px;
+    }
+
+    .dock-en { font-size: 14px; }
+    .dock-cn { font-size: 8px; }
+
+    /* — About — */
+    .section-about {
+        height: auto;
+        min-height: auto;
+        padding: 40px 14px 64px;
+    }
+
+    .bento-container   { height: auto; max-height: none; }
+    .about-title-svg   { width: 180px; }
+
+    .bento-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+    .item-bio,
+    .item-avatar,
+    .item-stats,
+    .item-exp1,
+    .item-exp2,
+    .item-tools,
+    .item-intern {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .item-avatar { order: 1; }
+    .item-bio    { order: 2; }
+    .item-stats  { order: 3; }
+    .item-exp1   { order: 4; }
+    .item-exp2   { order: 5; }
+    .item-intern { order: 6; }
+    .item-tools  { order: 7; }
+
+    .bento-item { padding: 20px; border-radius: 18px; }
+    .bento-tag  { font-size: 12px; }
+
+    .bio-heading { font-size: 16px; }
+    .bio-sub     { font-size: 14px; }
+    .skill-tag   { font-size: 11px; padding: 4px 10px; }
+
+    .item-avatar { min-height: auto; padding: 28px 20px; }
+    .avatar-circle { width: 100px; height: 100px; }
+    .avatar-text   { font-size: 28px; }
+    .avatar-name   { font-size: 16px; }
+    .avatar-info   { font-size: 12px; }
+
+    .item-stats { padding: 24px 20px; }
+    .stat-val   { font-size: 32px; }
+    .stat-label { font-size: 12px; }
+    .stats-list { height: auto; }
+    .stat-divider { margin: 12px auto; }
+
+    .item-exp1 { padding: 20px; }
+    .item-exp2 { padding: 20px; }
+    .exp-role     { font-size: 16px; }
+    .exp-date     { font-size: 12px; }
+    .exp-company  { font-size: 14px; }
+    .exp-badge    { font-size: 12px; padding: 2px 8px; }
+    .exp-details  { font-size: 14px; line-height: 1.5; padding-left: 18px; }
+    .exp-divider  { margin: 10px 0; }
+    .item-exp2 .exp-details { font-size: 14px; }
+
+    .intern-company { font-size: 16px; }
+    .intern-role    { font-size: 12px; }
+
+    .item-tools { padding: 20px; min-height: 200px; }
+    .tools-icons {
+        position: relative;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 10px;
+        justify-items: center;
+    }
+    .tools-icons img {
+        position: static;
+        left: auto;
+        top: auto;
+        width: 100%;
+        max-width: 56px;
+        transform: none;
+        animation: none;
+        --tx: 0;
+        --ty: 0;
+        --rot: 0deg;
+    }
+    .tools-icons img:hover {
+        transform: scale(1.06);
+    }
+
+    .item-intern { padding: 16px 20px; }
+    .intern-company { font-size: 15px; }
+    .intern-role    { font-size: 12px; }
+    .item-intern .exp-date { font-size: 12px; }
+    .item-intern .exp-divider { margin: 6px 0; }
+
+    /* — Marquee — */
+    .marquee-item    { font-size: 20px; }
+    .section-marquee { padding: 24px 0; }
+
+    /* — Gallery — */
+    .project-article  { gap: 0; }
+    .project-hero        { border-radius: 16px; }
+    .gallery-guide       { border-radius: 16px; }
+    .gallery-placeholder { border-radius: 16px; padding: 48px 24px; min-height: 20vh; }
+    .placeholder-title   { font-size: 18px; }
+    .interactive-grid    { grid-template-columns: 1fr; gap: 14px; }
+    .interactive-card    { border-radius: 16px; }
+    .interactive-cover   { aspect-ratio: 16 / 9; min-height: 100px; }
+    .interactive-body    { padding: 14px 16px 16px; }
+    .interactive-name    { font-size: 14px; }
+    .interactive-desc    { font-size: 12px; padding-right: 38px; }
+    .interactive-cta     { right: 14px; bottom: 14px; width: 28px; height: 28px; font-size: 13px; }
+    .placeholder-sub     { font-size: 12px; }
+
+    .project-bento-layout { gap: 12px; }
+    .bento-section {
+        --bento-cols: 2 !important;
+        gap: 8px;
+    }
+    .bento-cell { border-radius: 8px; }
+
+    /* — Contact Modal — */
+    .modal-card { padding: 32px 24px 28px; }
+    .modal-title { font-size: 20px; }
+
+    /* — Cursor — */
+    .custom-cursor { display: none; }
+}
+
+/* ── 9b. Small phone (≤480px) ── */
+
+@media (max-width: 480px) {
+    .title-container { width: clamp(200px, 80vw, 320px); }
+    .landing-subtitle { font-size: 13px; }
+
+    .folder-card { width: clamp(100px, 28vw, 120px); opacity: 0.7; }
+    .folder-label { font-size: 13px; }
+
+    .dock-pills { padding: 10px 12px; gap: 6px; }
+    .dock { height: 38px; padding: 0 12px; gap: 8px; }
+    .dock-en { font-size: 13px; }
+    .dock-cn { font-size: 7px; }
+
+    .bento-item { padding: 16px; border-radius: 14px; }
+    .bio-heading { font-size: 15px; }
+    .bio-sub { font-size: 13px; }
+    .avatar-name { font-size: 15px; }
+    .exp-role { font-size: 15px; }
+    .exp-details { font-size: 13px; }
+    .item-exp2 .exp-details { font-size: 13px; }
+    .exp-company { font-size: 13px; }
+    .intern-company { font-size: 15px; }
+
+    .stat-val { font-size: 28px; }
+
+    .tools-icons {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
+    .tools-icons img { max-width: 52px; }
+
+    .exp-details { font-size: 12px; }
+
+    .bento-section { --bento-cols: 1 !important; gap: 6px; }
+    .bento-section[style*="3 / 4"] { --bento-cols: 2 !important; }
+
+    .section-about { padding: 32px 10px 48px; }
+}
+
+

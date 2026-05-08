@@ -1,0 +1,501 @@
+﻿/* ═══════════════════════════════════════
+   4. About Section (Bento Grid)
+   ═══════════════════════════════════════ */
+
+.section-about {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 46px 12px 120px;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px) 0 0 / 24px 24px,
+        var(--bg);
+}
+
+.bento-container {
+    width: min(1381px, calc(100vw - 24px));
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    z-index: 1;
+}
+
+.about-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+.about-title-svg {
+    width: 282px;
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* ── 4a. Bento Grid ── */
+
+.bento-grid {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1381 / 783;
+}
+
+.bento-item {
+    position: absolute;
+    background: white;
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.03);
+    transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+                box-shadow 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+                border-color 0.35s ease;
+    overflow: hidden;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+}
+
+.bento-item:hover {
+    transform: translateY(-6px) translateZ(0);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+    border-color: rgba(72,219,189,0.15);
+}
+
+/* ── 4b. Tag Badge ── */
+
+.bento-tag {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #ababaf;
+    letter-spacing: 1.12px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.item-stats .bento-tag {
+    color: rgba(255,255,255,0.4);
+}
+
+/* ── 4c. Bio Card ── */
+
+.item-bio {
+    left: 0;
+    top: 0.97%;
+    width: 43.45%;
+    height: 41.72%;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 36px 22px;
+}
+
+.bio-heading {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+.bio-sub {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #86868b;
+    font-weight: 350;
+}
+
+.bio-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 12px;
+}
+
+.skill-tag {
+    display: inline-block;
+    padding: 5px 12px;
+    background: rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.04);
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: 0.02em;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.skill-tag:hover {
+    background: rgba(72,219,189,0.12);
+    border-color: rgba(72,219,189,0.15);
+    color: #2a9d8f;
+    transform: translateY(-1px);
+}
+
+/* ── 4d. Avatar Card ── */
+
+.item-avatar {
+    left: 44.53%;
+    top: 0.97%;
+    width: 27.15%;
+    height: 41.64%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: #e6f6f4;
+    border-color: rgba(0,0,0,0.03);
+    padding: 38px 40px 40px;
+}
+
+.avatar-circle {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #48dbbd, #38c9a8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(72,219,189,0.3);
+    overflow: hidden;
+}
+
+.avatar-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+}
+
+.avatar-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-top: 6px;
+}
+
+.avatar-info {
+    font-size: 13px;
+    color: #6e6e6e;
+    margin-bottom: 4px;
+}
+
+.avatar-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* ── 4e. Stats Card (dark) ── */
+
+.item-stats {
+    left: 72.77%;
+    top: 0.97%;
+    width: 27.15%;
+    height: 57.09%;
+    background: linear-gradient(165deg, #1d1d1f, #2d2d30);
+    border-color: rgba(255,255,255,0.08);
+    color: #fff;
+    padding: 38px 40px 40px;
+}
+
+.item-stats .stat-val     { color: #fff; }
+.item-stats .stat-label   { color: rgba(255,255,255,0.5); }
+
+.stats-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: calc(100% - 36px);
+}
+
+.stat-row { text-align: center; }
+
+.stat-val {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.stat-label {
+    font-size: 13px;
+    font-weight: 400;
+    margin-top: 4px;
+    display: block;
+}
+
+.stat-divider {
+    height: 1px;
+    width: 40px;
+    background: rgba(255,255,255,0.1);
+    margin: 18px auto;
+}
+
+/* ── 4f. Experience Card 1 (SeaArt) ── */
+
+.item-exp1 {
+    left: 0;
+    top: 45.03%;
+    width: 35.34%;
+    height: 54.92%;
+    display: flex;
+    flex-direction: column;
+    padding: 38px 40px 40px;
+}
+
+.exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2px;
+}
+
+.exp-role {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+}
+
+.exp-date {
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #3dcfaf;
+    flex-shrink: 0;
+}
+
+.exp-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.exp-company {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    letter-spacing: -0.02em;
+}
+
+.exp-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 10px;
+    background: #f5f5f5;
+    border: 1px solid #eee;
+    border-radius: 80px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: -0.02em;
+}
+
+.exp-divider {
+    height: 1px;
+    background: rgba(0,0,0,0.06);
+    width: 100%;
+    margin: 14px 0;
+}
+
+.exp-details {
+    padding-left: 20px;
+    font-size: 15px;
+    line-height: 1.55;
+    color: #606066;
+    letter-spacing: -0.01em;
+}
+
+.exp-details li {
+    margin-bottom: 4px;
+}
+
+.item-exp1 .exp-details,
+.item-exp2 .exp-details {
+    overflow: hidden;
+    padding-right: 0;
+}
+
+.exp-details strong {
+    font-weight: 700;
+    color: #535358;
+}
+
+/* ── 4g. Experience Card 2 (AiPPT) ── */
+
+.item-exp2 {
+    left: 36.35%;
+    top: 45.03%;
+    width: 35.34%;
+    height: 37%;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 36px 18px;
+}
+
+.item-exp2 .exp-divider {
+    margin: 8px 0;
+}
+
+/* ── 4h. Tools Card (icon grid) ── */
+
+.item-tools {
+    left: 72.84%;
+    top: 59.21%;
+    width: 27.15%;
+    height: 40.74%;
+    background: #fafafa;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 40px;
+}
+
+.item-tools .bento-tag {
+    color: #86868b;
+    flex-shrink: 0;
+}
+
+.tools-icons {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+}
+
+.tools-icons img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 77px;
+    aspect-ratio: 1;
+    border-radius: 14px;
+    object-fit: cover;
+    box-shadow:
+        0 11px 7px rgba(32,0,43,0.06),
+        0 6px 4px rgba(32,0,43,0.08),
+        0 2px 2px rgba(32,0,43,0.10);
+    transform: translate(-50%, -50%) translate(var(--tx, 0), var(--ty, 0)) rotate(var(--rot, 0deg));
+    transition: transform 0.25s ease;
+    animation: toolsDrop 0.85s cubic-bezier(0.2, 0.8, 0.2, 1.1) both;
+    animation-delay: var(--delay, 0s);
+}
+
+.tools-icons img:hover {
+    transform: translate(-50%, -50%) translate(var(--tx, 0), var(--ty, 0)) rotate(var(--rot, 0deg)) scale(1.08);
+    z-index: 20;
+}
+
+.tools-icons img:nth-child(1) { --tx: -113px; --ty: 64px;  --rot: 0deg;    --delay: 0.00s; z-index: 8; }
+.tools-icons img:nth-child(2) { --tx: -38px;  --ty: -72px; --rot: -6.62deg;--delay: 0.08s; z-index: 3; }
+.tools-icons img:nth-child(3) { --tx: 42px;   --ty: -66px; --rot: -0.33deg;--delay: 0.16s; z-index: 4; }
+.tools-icons img:nth-child(4) { --tx: 108px;  --ty: -54px; --rot: 0deg;    --delay: 0.24s; z-index: 6; }
+.tools-icons img:nth-child(5) { --tx: -74px;  --ty: 6px;   --rot: 7.03deg; --delay: 0.30s; z-index: 10; }
+.tools-icons img:nth-child(6) { --tx: -3px;   --ty: 0px;   --rot: 10.84deg;--delay: 0.36s; z-index: 12; }
+.tools-icons img:nth-child(7) { --tx: 72px;   --ty: 2px;   --rot: -8.74deg;--delay: 0.44s; z-index: 11; }
+.tools-icons img:nth-child(8) { --tx: -24px;  --ty: 72px;  --rot: 24.73deg;--delay: 0.52s; z-index: 7; }
+.tools-icons img:nth-child(9) { --tx: 60px;   --ty: 74px;  --rot: -13.69deg;--delay: 0.60s; z-index: 9; }
+
+@keyframes toolsDrop {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -190%) rotate(0deg) scale(0.88);
+    }
+    72% {
+        opacity: 1;
+        transform: translate(-50%, -50%) translate(var(--tx, 0), calc(var(--ty, 0) + 10px)) rotate(var(--rot, 0deg)) scale(1.02);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) translate(var(--tx, 0), var(--ty, 0)) rotate(var(--rot, 0deg)) scale(1);
+    }
+}
+
+/* ── 4i. Intern Card ── */
+
+.item-intern {
+    left: 36.35%;
+    top: 83%;
+    width: 35.34%;
+    height: 17%;
+    padding: 18px 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.intern-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+.intern-company {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.intern-role {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    letter-spacing: -0.02em;
+}
+
+.item-intern .exp-divider {
+    margin: 6px 0;
+}
+
+/* ── 4j. Narrow desktop fallback ── */
+
+@media (max-width: 1280px) {
+    .section-about {
+        padding: 54px 10px 86px;
+    }
+
+    .bento-grid {
+        max-height: none;
+        aspect-ratio: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        gap: 12px;
+    }
+
+    .bento-item {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: auto;
+        height: auto;
+        min-height: 0;
+    }
+
+    .item-bio { grid-column: 1 / 2; grid-row: 1 / 2; }
+    .item-avatar { grid-column: 2 / 3; grid-row: 1 / 2; }
+    .item-stats { grid-column: 2 / 3; grid-row: 2 / 4; }
+    .item-exp1 { grid-column: 1 / 2; grid-row: 2 / 4; }
+    .item-exp2 { grid-column: 1 / 2; grid-row: 4 / 5; }
+    .item-intern { grid-column: 1 / 2; grid-row: 5 / 6; }
+    .item-tools { grid-column: 2 / 3; grid-row: 4 / 6; }
+}
+
+
+
+

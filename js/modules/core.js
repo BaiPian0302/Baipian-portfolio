@@ -5,10 +5,10 @@ gsap.registerPlugin(ScrollTrigger);
 export { gsap, ScrollTrigger };
 
 export const lenis = new Lenis({
-    duration: 1.3,
+    duration: 0.95,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     touchMultiplier: 1.5,
-    wheelMultiplier: 0.85,
+    wheelMultiplier: 1,
     smoothWheel: true,
     infinite: false,
 });
@@ -61,8 +61,8 @@ export const PROJECTS = [
                     '视频封面-GPT 2.0 EDIT-2.mp4',
                     '视频封面-gpt-34.mp4',
                     '视频封面-gpt-无.mp4',
+                    '视频封面-SeaArt StarDream2.0 Fast-无.mp4',
                     '视频封面-VEO 3.1.mp4',
-                    '视频封面-模板.mp4',
                 ],
             },
             {
@@ -74,8 +74,8 @@ export const PROJECTS = [
                     '视频展示-SeaArt Film Video 2.0-无.mp4',
                     '视频展示-SeaArt Film Video Boost-34-无.mp4',
                     '视频展示-SeaArt Galaxy Fast-无.mp4',
-                    '视频展示-SeaArt StarDream2.0 Fast-无.mp4',
                     '视频展示-SeaArt StarDream2.0 -无.mp4',
+                    '视频展示-模板.mp4',
                     '视频展示-对战.mp4',
                 ],
             },
@@ -161,5 +161,6 @@ export function scrollToSection(target, duration = SCROLL.sectionDuration) {
 export function scrollToTop() {
     lenis.scrollTo(0, { duration: SCROLL.sectionDuration });
 }
+
 
 

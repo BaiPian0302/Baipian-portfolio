@@ -1,0 +1,138 @@
+﻿/* ═══════════════════════════════════════
+   7. Custom Cursor
+   ═══════════════════════════════════════ */
+
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--text-primary);
+    border: none;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%) translateZ(0);
+    transition: width 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+                height 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+                background 0.25s ease,
+                border 0.25s ease,
+                opacity 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    mix-blend-mode: difference;
+    opacity: 0;
+    will-change: left, top, width, height;
+    contain: layout style;
+}
+
+.custom-cursor.visible {
+    opacity: 1;
+}
+
+.custom-cursor.cursor-hover {
+    width: 28px;
+    height: 28px;
+    background: rgba(56, 201, 168, 0.12);
+    border: 1.5px solid rgba(56, 201, 168, 0.45);
+    mix-blend-mode: normal;
+}
+
+
+body.cursor-active {
+    cursor: none;
+}
+body.cursor-active a,
+body.cursor-active button,
+body.cursor-active [role="button"],
+body.cursor-active input,
+body.cursor-active .folder-card,
+body.cursor-active .bento-item,
+body.cursor-active .sc-project {
+    cursor: none;
+}
+
+@media (hover: none) {
+    .custom-cursor { display: none !important; }
+}
+
+
+/* ═══════════════════════════════════════
+   8. Marquee
+   ═══════════════════════════════════════ */
+
+.section-marquee {
+    position: relative;
+    padding: 56px 0;
+    overflow: hidden;
+    background:
+        radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px) 0 0 / 24px 24px,
+        var(--bg);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.section-marquee::before,
+.section-marquee::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 120px;
+    z-index: 2;
+    pointer-events: none;
+}
+.section-marquee::before {
+    left: 0;
+    background: linear-gradient(to right, var(--bg), transparent);
+}
+.section-marquee::after {
+    right: 0;
+    background: linear-gradient(to left, var(--bg), transparent);
+}
+
+.marquee-track {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee-inner {
+    display: inline-flex;
+    align-items: center;
+    gap: 40px;
+    animation: marquee-scroll 25s linear infinite;
+    will-change: transform;
+    padding-right: 40px;
+}
+
+.marquee-item {
+    font-family: 'Outfit', 'Noto Sans SC', sans-serif;
+    font-size: clamp(28px, 3.5vw, 48px);
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.marquee-dot {
+    font-size: 10px;
+    color: #38c9a8;
+    flex-shrink: 0;
+    user-select: none;
+}
+
+@keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+.section-marquee.dragging .marquee-inner {
+    animation-play-state: paused;
+}
+
+
+
+

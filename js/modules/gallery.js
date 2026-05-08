@@ -1,4 +1,4 @@
-import {
+﻿import {
     gsap,
     ScrollTrigger,
     lenis,
@@ -13,7 +13,7 @@ import {
     galleryNowNum,
     galleryNowName,
     formatIndex,
-} from './core.js?v=20260508-motion-first';
+} from './core.js?v=20260508-structure-fix';
 
 let activePi = 0;
 let expandedCatId = null;
@@ -25,6 +25,7 @@ let galleryBuilt = false;
 let galleryScrollReady = false;
 let videoObserver = null;
 let onGalleryActive = () => {};
+let refreshTimer = 0;
 
 function ensureGalleryArticles() {
     if (!galleryArticles.length) {
@@ -47,10 +48,10 @@ function getCategoryProgress(pi) {
 }
 
 const GUIDE_IMAGES = {
-    operational: 'assets/images/Guide/1.Operational.webp',
-    visual:      'assets/images/Guide/2.Visual.webp',
-    motion:      'assets/images/Guide/3.Motion.webp',
-    ai:          'assets/images/Guide/4.AI.webp',
+    operational: 'assets/images/Guide/1.Operational.webp?v=20260508-structure-fix',
+    visual:      'assets/images/Guide/2.Visual.webp?v=20260508-structure-fix',
+    motion:      'assets/images/Guide/3.Motion.webp?v=20260508-structure-fix',
+    ai:          'assets/images/Guide/4.AI.webp?v=20260508-structure-fix',
 };
 
 function renderGuide(src, label, id) {
@@ -282,22 +283,33 @@ function killGalleryScroll() {
     galleryScrollReady = false;
 }
 
-let refreshTimer = 0;
-function markLoaded(el) {
+function markLoaded(el, shouldRefresh = true) {
     el.classList.add('loaded');
     el.parentElement?.classList.add('media-loaded');
+    if (!shouldRefresh) return;
+
     clearTimeout(refreshTimer);
     refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 200);
 }
 
-function hydrateVideo(video) {
+function loadVideo(video) {
     if (!video || video.dataset.loaded === 'true') return;
     video.src = video.dataset.src;
     video.dataset.loaded = 'true';
-    video.addEventListener('canplay', () => markLoaded(video), { once: true });
+    video.addEventListener('loadeddata', () => markLoaded(video, false), { once: true });
     video.load();
+}
+
+function playVideo(video) {
+    if (!video) return;
+    loadVideo(video);
     const playPromise = video.play?.();
     if (playPromise?.catch) playPromise.catch(() => {});
+}
+
+function pauseVideo(video) {
+    if (!video || video.paused) return;
+    video.pause();
 }
 
 function observeBentoVideos() {
@@ -307,17 +319,19 @@ function observeBentoVideos() {
     if (!bentoVideos.length) return;
 
     if (!('IntersectionObserver' in window)) {
-        bentoVideos.forEach(hydrateVideo);
+        bentoVideos.forEach(playVideo);
         return;
     }
 
     videoObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            hydrateVideo(entry.target);
-            videoObserver.unobserve(entry.target);
+            if (entry.isIntersecting) {
+                playVideo(entry.target);
+            } else {
+                pauseVideo(entry.target);
+            }
         });
-    }, { rootMargin: '300px 0px', threshold: 0.01 });
+    }, { rootMargin: '80px 0px', threshold: 0.18 });
 
     bentoVideos.forEach((video) => videoObserver.observe(video));
 }
@@ -456,3 +470,5 @@ export function initGalleryOnDemand() {
 
     observer.observe(gallerySection);
 }
+
+

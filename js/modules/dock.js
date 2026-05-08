@@ -1,11 +1,11 @@
-import {
+﻿import {
     ScrollTrigger,
     sectionAbout,
     gallerySection,
     dockItems,
     scrollToSection,
     scrollToTop,
-} from './core.js?v=20260508-motion-first';
+} from './core.js?v=20260508-structure-fix';
 
 const dockActionMap = {
     home: () => scrollToTop(),
@@ -71,3 +71,5 @@ export function initDockInteractions() {
         });
     });
 }
+
+
