@@ -1,4 +1,4 @@
-import { gsap } from './core.js?v=20260602-sidebar-order-fix';
+import { gsap } from './core.js?v=20260602-operational-update';
 
 function initMarquee() {
     const section = document.getElementById('section-marquee');

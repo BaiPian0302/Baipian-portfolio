@@ -5,7 +5,7 @@ import {
     dockItems,
     scrollToSection,
     scrollToTop,
-} from './core.js?v=20260602-sidebar-order-fix';
+} from './core.js?v=20260602-operational-update';
 
 const dockActionMap = {
     home: () => scrollToTop(),

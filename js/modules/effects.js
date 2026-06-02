@@ -1,4 +1,4 @@
-import { gsap } from './core.js?v=20260602-sidebar-order-fix';
+import { gsap } from './core.js?v=20260602-operational-update';
 
 function initLiquidGlass() {
     const pill = document.querySelector('.title-glow-pill');

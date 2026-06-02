@@ -1,4 +1,4 @@
-import { lenis, contactModal, modalCloseBtn } from './core.js?v=20260602-sidebar-order-fix';
+import { lenis, contactModal, modalCloseBtn } from './core.js?v=20260602-operational-update';
 
 export function initContactModal() {
     if (!contactModal) return;

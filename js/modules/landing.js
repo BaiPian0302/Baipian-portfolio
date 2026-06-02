@@ -8,11 +8,11 @@ import {
     scrollHint,
     dockWrapper,
     createRafThrottled,
-} from './core.js?v=20260602-sidebar-order-fix';
-import { switchProject } from './gallery.js?v=20260602-sidebar-order-fix';
-import { initGalleryScroll } from './gallery.js?v=20260602-sidebar-order-fix';
-import { initAboutAnimation } from './about.js?v=20260602-sidebar-order-fix';
-import { initAboutDockHighlight, initGalleryNowPill } from './dock.js?v=20260602-sidebar-order-fix';
+} from './core.js?v=20260602-operational-update';
+import { switchProject } from './gallery.js?v=20260602-operational-update';
+import { initGalleryScroll } from './gallery.js?v=20260602-operational-update';
+import { initAboutAnimation } from './about.js?v=20260602-operational-update';
+import { initAboutDockHighlight, initGalleryNowPill } from './dock.js?v=20260602-operational-update';
 
 let folderInteractionsReady = false;
 
@@ -163,7 +163,7 @@ function initFolderInteractions() {
             } else if (pi !== undefined && pi !== '') {
                 switchProject(parseInt(pi, 10));
             } else if (guideId) {
-                import('./gallery.js?v=20260602-sidebar-order-fix').then(({ buildGallery }) => {
+                import('./gallery.js?v=20260602-operational-update').then(({ buildGallery }) => {
                     buildGallery();
                     const target = document.getElementById(guideId);
                     if (target) lenis.scrollTo(target, { offset: -100, duration: 1.2 });
