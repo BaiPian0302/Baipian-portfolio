@@ -1,4 +1,4 @@
-﻿import { gsap } from './core.js?v=20260508-structure-fix';
+import { gsap } from './core.js?v=20260602-motion-last';
 
 function initMarquee() {
     const section = document.getElementById('section-marquee');

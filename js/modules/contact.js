@@ -1,4 +1,4 @@
-﻿import { lenis, contactModal, modalCloseBtn } from './core.js?v=20260508-structure-fix';
+import { lenis, contactModal, modalCloseBtn } from './core.js?v=20260602-motion-last';
 
 export function initContactModal() {
     if (!contactModal) return;

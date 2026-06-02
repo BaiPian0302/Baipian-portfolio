@@ -1,11 +1,11 @@
-﻿import {
+import {
     ScrollTrigger,
     sectionAbout,
     gallerySection,
     dockItems,
     scrollToSection,
     scrollToTop,
-} from './core.js?v=20260508-structure-fix';
+} from './core.js?v=20260602-motion-last';
 
 const dockActionMap = {
     home: () => scrollToTop(),

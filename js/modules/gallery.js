@@ -1,4 +1,4 @@
-﻿import {
+import {
     gsap,
     ScrollTrigger,
     lenis,
@@ -13,7 +13,7 @@
     galleryNowNum,
     galleryNowName,
     formatIndex,
-} from './core.js?v=20260508-structure-fix';
+} from './core.js?v=20260602-motion-last';
 
 let activePi = 0;
 let expandedCatId = null;
@@ -48,10 +48,10 @@ function getCategoryProgress(pi) {
 }
 
 const GUIDE_IMAGES = {
-    operational: 'assets/images/Guide/1.Operational.webp?v=20260508-structure-fix',
-    visual:      'assets/images/Guide/2.Visual.webp?v=20260508-structure-fix',
-    motion:      'assets/images/Guide/3.Motion.webp?v=20260508-structure-fix',
-    ai:          'assets/images/Guide/4.AI.webp?v=20260508-structure-fix',
+    operational: 'assets/images/Guide/1.Operational.webp?v=20260602-motion-last',
+    visual:      'assets/images/Guide/2.Visual.webp?v=20260602-motion-last',
+    motion:      'assets/images/Guide/3.Motion.webp?v=20260602-motion-last',
+    ai:          'assets/images/Guide/4.AI.webp?v=20260602-motion-last',
 };
 
 function renderGuide(src, label, id) {

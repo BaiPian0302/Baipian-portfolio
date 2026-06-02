@@ -1,4 +1,4 @@
-﻿import {
+import {
     gsap,
     ScrollTrigger,
     lenis,
@@ -8,11 +8,11 @@
     scrollHint,
     dockWrapper,
     createRafThrottled,
-} from './core.js?v=20260508-structure-fix';
-import { switchProject } from './gallery.js?v=20260508-structure-fix';
-import { initGalleryScroll } from './gallery.js?v=20260508-structure-fix';
-import { initAboutAnimation } from './about.js?v=20260508-structure-fix';
-import { initAboutDockHighlight, initGalleryNowPill } from './dock.js?v=20260508-structure-fix';
+} from './core.js?v=20260602-motion-last';
+import { switchProject } from './gallery.js?v=20260602-motion-last';
+import { initGalleryScroll } from './gallery.js?v=20260602-motion-last';
+import { initAboutAnimation } from './about.js?v=20260602-motion-last';
+import { initAboutDockHighlight, initGalleryNowPill } from './dock.js?v=20260602-motion-last';
 
 let folderInteractionsReady = false;
 
@@ -163,7 +163,7 @@ function initFolderInteractions() {
             } else if (pi !== undefined && pi !== '') {
                 switchProject(parseInt(pi, 10));
             } else if (guideId) {
-                import('./gallery.js?v=20260508-structure-fix').then(({ buildGallery }) => {
+                import('./gallery.js?v=20260602-motion-last').then(({ buildGallery }) => {
                     buildGallery();
                     const target = document.getElementById(guideId);
                     if (target) lenis.scrollTo(target, { offset: -100, duration: 1.2 });

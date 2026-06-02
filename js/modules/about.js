@@ -1,5 +1,5 @@
-﻿import { gsap, ScrollTrigger, sectionAbout } from './core.js?v=20260508-structure-fix';
-import { initAboutDockHighlight } from './dock.js?v=20260508-structure-fix';
+import { gsap, ScrollTrigger, sectionAbout } from './core.js?v=20260602-motion-last';
+import { initAboutDockHighlight } from './dock.js?v=20260602-motion-last';
 
 function initAboutAnimation() {
     if (!sectionAbout) return;

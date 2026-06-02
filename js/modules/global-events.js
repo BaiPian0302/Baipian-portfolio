@@ -1,4 +1,4 @@
-﻿import { ScrollTrigger, contactModal, scrollToTop } from './core.js?v=20260508-structure-fix';
+import { ScrollTrigger, contactModal, scrollToTop } from './core.js?v=20260602-motion-last';
 
 let resizeTimer;
 

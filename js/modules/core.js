@@ -18,13 +18,25 @@ gsap.ticker.add((time) => lenis.raf(time * 1000));
 gsap.ticker.lagSmoothing(0);
 
 export const CATEGORIES = [
-    { id: 'motion',      name: '动效设计', en: 'Motion Design' },
     { id: 'operational', name: '运营设计', en: 'Operational Design' },
     { id: 'visual',      name: '视觉设计', en: 'Visual Design' },
     { id: 'ai',          name: 'AI设计',   en: 'AI Design' },
+    { id: 'motion',      name: '动效设计', en: 'Motion Design' },
 ];
 
 export const PROJECTS = [
+    { name: '模型训练导师赛', category: 'operational', tag: 'Model Master Bootcamp', cover: 'assets/images/projects/Operational Design/slide-1-模型训练导师活动页.webp' },
+    { name: '海艺绘梦师',   category: 'operational', tag: 'SeaArt Dreamweaver', cover: 'assets/images/projects/Operational Design/slide-2-海艺绘梦师.webp' },
+    { name: '儿童节活动',   category: 'operational', tag: 'Back to Innocence',  cover: 'assets/images/projects/Operational Design/slide-3-儿童节活动.webp' },
+    { name: '圣诞灵感季',   category: 'operational', tag: 'Winter Inspiration', cover: 'assets/images/projects/Operational Design/slide-4-圣诞活动.webp' },
+    { name: '创作者激励计划', category: 'operational', tag: 'Incentive Program', cover: 'assets/images/projects/Operational Design/slide-5-激励计划.webp' },
+    { name: '内容创作大赛', category: 'operational', tag: 'Creation Contest',   cover: 'assets/images/projects/Operational Design/slide-6-内容创作大赛.webp' },
+    { name: '2024 年度报告', category: 'operational', tag: 'Annual Report',     cover: 'assets/images/projects/Operational Design/slide-7-2024年度报告.webp' },
+    { name: 'Banner 合集',  category: 'operational', tag: 'Daily Operations',  cover: 'assets/images/projects/Operational Design/slide-8-活动banner合集.webp' },
+    { name: '品牌入驻小红书', category: 'visual', tag: 'Brand Launch',       cover: 'assets/images/projects/Visual Design/slide-1 品牌入驻小红书.webp' },
+    { name: 'ComfyUI 大会',  category: 'visual', tag: 'Conference',         cover: 'assets/images/projects/Visual Design/slide-2 comfyui 大会线下物料.webp' },
+    { name: '产品外宣合集',  category: 'visual', tag: 'Product Promotion',  cover: 'assets/images/projects/Visual Design/slide-3-产品外宣合集.webp' },
+    { name: '网站素材合集',  category: 'visual', tag: 'Web Asset Collection', cover: 'assets/images/projects/Visual Design/slide-4-网站素材合集.webp' },
     {
         name: '动效设计',
         category: 'motion',
@@ -91,18 +103,6 @@ export const PROJECTS = [
             },
         ],
     },
-    { name: '模型训练导师赛', category: 'operational', tag: 'Model Master Bootcamp', cover: 'assets/images/projects/Operational Design/slide-1-模型训练导师活动页.webp' },
-    { name: '海艺绘梦师',   category: 'operational', tag: 'SeaArt Dreamweaver', cover: 'assets/images/projects/Operational Design/slide-2-海艺绘梦师.webp' },
-    { name: '儿童节活动',   category: 'operational', tag: 'Back to Innocence',  cover: 'assets/images/projects/Operational Design/slide-3-儿童节活动.webp' },
-    { name: '圣诞灵感季',   category: 'operational', tag: 'Winter Inspiration', cover: 'assets/images/projects/Operational Design/slide-4-圣诞活动.webp' },
-    { name: '创作者激励计划', category: 'operational', tag: 'Incentive Program', cover: 'assets/images/projects/Operational Design/slide-5-激励计划.webp' },
-    { name: '内容创作大赛', category: 'operational', tag: 'Creation Contest',   cover: 'assets/images/projects/Operational Design/slide-6-内容创作大赛.webp' },
-    { name: '2024 年度报告', category: 'operational', tag: 'Annual Report',     cover: 'assets/images/projects/Operational Design/slide-7-2024年度报告.webp' },
-    { name: 'Banner 合集',  category: 'operational', tag: 'Daily Operations',  cover: 'assets/images/projects/Operational Design/slide-8-活动banner合集.webp' },
-    { name: '品牌入驻小红书', category: 'visual', tag: 'Brand Launch',       cover: 'assets/images/projects/Visual Design/slide-1 品牌入驻小红书.webp' },
-    { name: 'ComfyUI 大会',  category: 'visual', tag: 'Conference',         cover: 'assets/images/projects/Visual Design/slide-2 comfyui 大会线下物料.webp' },
-    { name: '产品外宣合集',  category: 'visual', tag: 'Product Promotion',  cover: 'assets/images/projects/Visual Design/slide-3-产品外宣合集.webp' },
-    { name: '网站素材合集',  category: 'visual', tag: 'Web Asset Collection', cover: 'assets/images/projects/Visual Design/slide-4-网站素材合集.webp' },
 ];
 
 export const MOTION = {

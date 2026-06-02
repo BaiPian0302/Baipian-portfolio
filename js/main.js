@@ -1,6 +1,6 @@
-﻿import { initGalleryOnDemand, setGalleryDockHandler } from './modules/gallery.js?v=20260508-structure-fix';
-import { initDockInteractions, setActiveDock } from './modules/dock.js?v=20260508-structure-fix';
-import { initAfterLoad, initContactModal } from './modules/sections.js?v=20260508-structure-fix';
+import { initGalleryOnDemand, setGalleryDockHandler } from './modules/gallery.js?v=20260602-motion-last';
+import { initDockInteractions, setActiveDock } from './modules/dock.js?v=20260602-motion-last';
+import { initAfterLoad, initContactModal } from './modules/sections.js?v=20260602-motion-last';
 
 setGalleryDockHandler(setActiveDock);
 initGalleryOnDemand();
@@ -10,5 +10,3 @@ initContactModal();
 window.addEventListener('load', () => {
     setTimeout(initAfterLoad, 100);
 });
-
-
