@@ -13,7 +13,7 @@ import {
     galleryNowNum,
     galleryNowName,
     formatIndex,
-} from './core.js?v=20260602-motion-last';
+} from './core.js?v=20260602-ai-after-motion';
 
 let activePi = 0;
 let expandedCatId = null;
