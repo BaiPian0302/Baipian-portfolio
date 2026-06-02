@@ -1,4 +1,4 @@
-import { gsap } from './core.js?v=20260602-motion-last';
+import { gsap } from './core.js?v=20260602-sidebar-order-fix';
 
 function initMarquee() {
     const section = document.getElementById('section-marquee');

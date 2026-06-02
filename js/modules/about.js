@@ -1,5 +1,5 @@
-import { gsap, ScrollTrigger, sectionAbout } from './core.js?v=20260602-motion-last';
-import { initAboutDockHighlight } from './dock.js?v=20260602-motion-last';
+import { gsap, ScrollTrigger, sectionAbout } from './core.js?v=20260602-sidebar-order-fix';
+import { initAboutDockHighlight } from './dock.js?v=20260602-sidebar-order-fix';
 
 function initAboutAnimation() {
     if (!sectionAbout) return;

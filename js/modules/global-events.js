@@ -1,4 +1,4 @@
-import { ScrollTrigger, contactModal, scrollToTop } from './core.js?v=20260602-motion-last';
+import { ScrollTrigger, contactModal, scrollToTop } from './core.js?v=20260602-sidebar-order-fix';
 
 let resizeTimer;
 

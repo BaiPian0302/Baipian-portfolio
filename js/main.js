@@ -1,6 +1,6 @@
-import { initGalleryOnDemand, setGalleryDockHandler } from './modules/gallery.js?v=20260602-ai-after-motion';
-import { initDockInteractions, setActiveDock } from './modules/dock.js?v=20260602-motion-last';
-import { initAfterLoad, initContactModal } from './modules/sections.js?v=20260602-motion-last';
+import { initGalleryOnDemand, setGalleryDockHandler } from './modules/gallery.js?v=20260602-sidebar-order-fix';
+import { initDockInteractions, setActiveDock } from './modules/dock.js?v=20260602-sidebar-order-fix';
+import { initAfterLoad, initContactModal } from './modules/sections.js?v=20260602-sidebar-order-fix';
 
 setGalleryDockHandler(setActiveDock);
 initGalleryOnDemand();
